@@ -1,0 +1,598 @@
+---
+swagger: "2.0"
+info:
+  description: "Simple API for the Corradini Center website."
+  version: "1.0.0"
+  title: "Corradini"
+  contact:
+    email: "gerlaxrex@gmail.com"
+  license:
+    name: "Corradini"
+    url: "https//localhost:8080"
+host: "localhost:8080"
+basePath: "/v1"
+tags:
+- name: "role"
+  description: "role within the association."
+- name: "person"
+  description: "a person in the association."
+- name: "service"
+  description: "a service offered by the association."
+- name: "event"
+  description: "an event organized by the association."
+paths:
+  /roles:
+    get:
+      tags:
+      - "role"
+      summary: "gets all the categories of roles in the association (**useless, to\
+        \ be eliminated**)"
+      description: "This retrieves the group for free or all roles in the association"
+      operationId: "rolesGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "roles by category, so a collection of roles"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Role"
+        "404":
+          description: "roles could not be found"
+        default:
+          description: "Something went wrong in the request."
+      x-swagger-router-controller: "Role"
+  /roles/{type}:
+    get:
+      tags:
+      - "role"
+      summary: "gets a group of roles of a given type, 'free' or 'all'"
+      description: "retrieves all the roles of a given type, chosen by the corresponding\
+        \ group"
+      operationId: "rolesTypeGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "type"
+        in: "path"
+        description: "type of group of role"
+        required: true
+        type: "string"
+        enum:
+        - "free"
+        - "not free"
+      - name: "limit"
+        in: "query"
+        description: "max number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "pagination offset for the given page"
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "roles by category, so a collection of roles"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Role"
+            example:
+            - rid: "r0001"
+              name: "garden assistant"
+              type: "not free"
+              descr: "hi"
+        "404":
+          description: "roles could not be found"
+        default:
+          description: "Something went wrong in the request."
+      x-swagger-router-controller: "Role"
+  /roles/{type}/{rid}:
+    get:
+      tags:
+      - "role"
+      summary: "gets a specific role in a group of given type, specified by id"
+      description: "retrieves a single role that is in a group of roles of a given\
+        \ 'type'"
+      operationId: "rolesTypeRidGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "rid"
+        in: "path"
+        description: "pk of the role in the group of given type"
+        required: true
+        type: "string"
+      - name: "type"
+        in: "path"
+        description: "type of group of role"
+        required: true
+        type: "string"
+      - name: "limit"
+        in: "query"
+        description: "max number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "pagination offset for the given page"
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "roles by category, so a collection of roles"
+          schema:
+            type: "object"
+            maximum: 1
+        "400":
+          description: "given selector does not fit"
+        "404":
+          description: "roles could not be found"
+        default:
+          description: "Something went wrong in the request"
+      x-swagger-router-controller: "Role"
+  /services:
+    get:
+      tags:
+      - "service"
+      summary: "gets all the categories of services in the association"
+      description: "We take the list of all categories of services in an association"
+      operationId: "servicesGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "max number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "pagination offset for the given page"
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "service by category, so a collection of roles"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Service"
+        "404":
+          description: "services could not be found"
+        default:
+          description: "Something went wrong in the request"
+      x-swagger-router-controller: "Service"
+  /services/{type}:
+    get:
+      tags:
+      - "service"
+      summary: "gets all the services of a given type"
+      description: "retrieves all the services of a given type, chosen by the corresponding\
+        \ group in '/services'"
+      operationId: "servicesTypeGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "type"
+        in: "path"
+        description: "type of group of role"
+        required: true
+        type: "string"
+      - name: "limit"
+        in: "query"
+        description: "max number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "pagination offset for the given page"
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "services by category, so a collection of services"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Service"
+        "404":
+          description: "roles could not be found"
+        default:
+          description: "Something went wrong in the request"
+      x-swagger-router-controller: "Service"
+  /services/{type}/{sid}:
+    get:
+      tags:
+      - "service"
+      summary: "gets a specific service of a given type"
+      description: "retrieves all the services of a given type, chosen by the corresponding\
+        \ group in '/services'"
+      operationId: "servicesTypeSidGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "sid"
+        in: "path"
+        description: "identifier of the selected service"
+        required: true
+        type: "string"
+      - name: "type"
+        in: "path"
+        description: "type of group of role"
+        required: true
+        type: "string"
+      - name: "limit"
+        in: "query"
+        description: "max number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "pagination offset for the given page"
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "selected service by service identifier"
+          schema:
+            type: "object"
+        "400":
+          description: "given sid does not fit"
+        "404":
+          description: "roles could not be found"
+        default:
+          description: "Something went wrong in the request"
+      x-swagger-router-controller: "Service"
+  /events:
+    get:
+      tags:
+      - "event"
+      summary: "gets all the group of events divided by month"
+      description: "We take the list of all events by month"
+      operationId: "eventsGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "max number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "pagination offset for the given page"
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "events by category, so a collection of group of events"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Event"
+        "404":
+          description: "events could not be found"
+        default:
+          description: "Something went wrong in the request"
+      x-swagger-router-controller: "Event"
+  /events/{month}:
+    get:
+      tags:
+      - "event"
+      summary: "gets all the events by the selected month"
+      description: "retrieves all the roles of a given type, chosen by the corresponding\
+        \ group"
+      operationId: "eventsMonthGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "month"
+        in: "path"
+        description: "month in which there is all the group of events"
+        required: true
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "max number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "pagination offset for the given page"
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "roles by category, so a collection of roles"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Event"
+        "404":
+          description: "roles could not be found"
+        default:
+          description: "Something went wrong in the request"
+      x-swagger-router-controller: "Event"
+  /events/{month}/{eid}:
+    get:
+      tags:
+      - "event"
+      summary: "gets an the event from the selected month"
+      description: "retrieves all the roles of a given type, chosen by the corresponding\
+        \ group"
+      operationId: "eventsMonthEidGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "eid"
+        in: "path"
+        description: "identifier for the event"
+        required: true
+        type: "string"
+      - name: "month"
+        in: "path"
+        description: "month in which there is all the group of events"
+        required: true
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "max number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "pagination offset for the given page"
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "roles by category, so a collection of roles"
+          schema:
+            type: "object"
+        "404":
+          description: "roles could not be found"
+        default:
+          description: "Something went wrong in the request"
+      x-swagger-router-controller: "Event"
+  /people:
+    get:
+      tags:
+      - "person"
+      summary: "gets all groups of people in the association by job"
+      description: "We take the list of all events by month"
+      operationId: "peopleGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "events by category, so a collection of group of events"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Person"
+        "404":
+          description: "people could not be found"
+        default:
+          description: "Something went wrong in the request"
+      x-swagger-router-controller: "Person"
+  /people/{job}:
+    get:
+      tags:
+      - "person"
+      summary: "gets all the people involved in a given job"
+      description: "retrieves all the roles of a given type, chosen by the corresponding\
+        \ group"
+      operationId: "peopleJobGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "job"
+        in: "path"
+        description: "role of the person"
+        required: true
+        type: "string"
+      - name: "limit"
+        in: "query"
+        description: "max number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "pagination offset for the given page"
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "roles by category, so a collection of roles"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Person"
+        "404":
+          description: "roles could not be found"
+        default:
+          description: "Something went wrong in the request"
+      x-swagger-router-controller: "Person"
+  /people/{job}/{pid}:
+    get:
+      tags:
+      - "person"
+      summary: "gets a specific person that has a given job"
+      description: "retrieves all the roles of a given type, chosen by the corresponding\
+        \ group"
+      operationId: "peopleJobPidGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "pid"
+        in: "path"
+        description: "role of the person"
+        required: true
+        type: "string"
+      - name: "job"
+        in: "path"
+        description: "role of the person"
+        required: true
+        type: "string"
+      - name: "limit"
+        in: "query"
+        description: "max number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "pagination offset for the given page"
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "person"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Person"
+        "404":
+          description: "roles could not be found"
+        default:
+          description: "Something went wrong in the request"
+      x-swagger-router-controller: "Person"
+definitions:
+  Role:
+    type: "object"
+    required:
+    - "description"
+    - "freeRoles"
+    - "rid"
+    - "type"
+    properties:
+      rid:
+        type: "string"
+        example: "r0001"
+        minLength: 4
+        maxLength: 4
+      roleName:
+        type: "string"
+        example: "Gardener"
+      description:
+        type: "string"
+        example: "A gardener assistant"
+      type:
+        type: "string"
+        example: "free"
+      freeRoles:
+        type: "integer"
+        example: 1
+    example:
+      freeRoles: 1
+      roleName: "Gardener"
+      description: "A gardener assistant"
+      rid: "r0001"
+      type: "free"
+  Service:
+    type: "object"
+    required:
+    - "description"
+    - "place"
+    - "sid"
+    - "type"
+    properties:
+      sid:
+        type: "string"
+        minLength: 4
+        maxLength: 4
+      serviceName:
+        type: "string"
+      description:
+        type: "string"
+      type:
+        type: "string"
+      place:
+        type: "string"
+    example:
+      description: "description"
+      place: "place"
+      serviceName: "serviceName"
+      type: "type"
+      sid: "sid"
+  Event:
+    type: "object"
+    required:
+    - "beginTime"
+    - "contact"
+    - "description"
+    - "eid"
+    - "eventName"
+    properties:
+      eid:
+        type: "string"
+        minLength: 4
+        maxLength: 4
+      eventName:
+        type: "string"
+      description:
+        type: "string"
+      beginTime:
+        type: "string"
+        format: "date-time"
+      endTime:
+        type: "string"
+        format: "date-time"
+      schedule:
+        type: "integer"
+      place:
+        type: "string"
+      contact:
+        type: "string"
+        minLength: 4
+        maxLength: 4
+    example:
+      eid: "eid"
+      schedule: 0
+      contact: "contact"
+      eventName: "eventName"
+      description: "description"
+      beginTime: "2000-01-23T04:56:07.000+00:00"
+      endTime: "2000-01-23T04:56:07.000+00:00"
+      place: "place"
+  Person:
+    type: "object"
+    required:
+    - "email"
+    - "firstName"
+    - "lastName"
+    - "pid"
+    properties:
+      pid:
+        type: "string"
+        minLength: 4
+        maxLength: 4
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+        format: "email"
+      phoneNumber:
+        type: "string"
+      age:
+        type: "integer"
+        minimum: 0
+        maximum: 100
+      role:
+        type: "string"
+        minLength: 4
+        maxLength: 4
+    example:
+      firstName: "firstName"
+      lastName: "lastName"
+      phoneNumber: "phoneNumber"
+      role: "role"
+      pid: "pid"
+      email: "email"
+      age: 8
