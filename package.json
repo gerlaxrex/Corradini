@@ -4,8 +4,8 @@
   "description": "Simple API for the Corradini Center website.",
   "main": "index.js",
   "scripts": {
-	"prestart": "npm install",
-	"start": "node index.js"
+    "prestart": "npm install",
+    "start": "node index.js"
   },
   "keywords": [
     "swagger"
@@ -14,7 +14,8 @@
   "private": true,
   "dependencies": {
     "connect": "^3.2.0",
+    "ejs": "3.1.2",
     "js-yaml": "^3.3.0",
-    "swagger-tools": "0.10.1"
+    "swagger-tools": "^0.10.4"
   }
 }
