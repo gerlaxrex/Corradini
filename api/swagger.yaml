@@ -9,7 +9,7 @@ info:
   license:
     name: "Corradini"
     url: "https//localhost:8080"
-host: "localhost:8080"
+host: "corrdn.herokuapp.com"
 basePath: "/v1"
 tags:
 - name: "role"
@@ -20,6 +20,8 @@ tags:
   description: "a service offered by the association."
 - name: "event"
   description: "an event organized by the association."
+schemes:
+- https
 paths:
   /roles:
     get:
