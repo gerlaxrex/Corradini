@@ -37,7 +37,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   app.use(middleware.swaggerUi());
 
   // Serve static content from
-  app.use(serveStatic('/www', __dirname+"/www"));
+  app.use(serveStatic('.', __dirname+"/www"));
 
   // Start the server
   http.createServer(app).listen(serverPort, function () {
