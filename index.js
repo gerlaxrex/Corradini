@@ -37,8 +37,10 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   app.use(middleware.swaggerUi());
 
   // Serve static content from
-  app.use('',serveStatic( __dirname + "/PresentationLayer/html"));
-
+  app.use('/',serveStatic( __dirname + "/PresentationLayer/html"));
+  app.use('/css',serveStatic(__dirname + "/PresentationLayer/css"));
+  app.use('/images',serveStatic(__dirname + "/PresentationLayer/images"));
+  
   // Start the server
   http.createServer(app).listen(serverPort, function () {
     console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
