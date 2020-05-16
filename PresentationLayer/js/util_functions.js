@@ -1,3 +1,4 @@
+//Function for mapping the Query string in the URL
 function _mapUrlParams(queryString) {
     return queryString    
         .split('&') 
@@ -12,6 +13,8 @@ function _mapUrlParams(queryString) {
         }, {});
 }
 
+
+//Function for creating a json with the query string parts
 function getUrlParams(urlOrQueryString) {
     if ((i = urlOrQueryString.indexOf('?')) >= 0) {
         const queryString = urlOrQueryString.substring(i+1);
@@ -23,10 +26,11 @@ function getUrlParams(urlOrQueryString) {
     return {};
 }
 
+//Extract the general description from the single description of a role/service/event for the type
 function getGeneralDescription(description){
     const generalDescription = "";
     if((i = description.indexOf('//')) >= 0 ){
-        generalDescription = description.substring(i+1);
+        generalDescription = description.substring(i+2);
     }
     return generalDescription;
 }
