@@ -23,3 +23,10 @@ function getUrlParams(urlOrQueryString) {
     return {};
 }
 
+function getGeneralDescription(description){
+    const generalDescription = "";
+    if((i = description.indexOf('//')) >= 0 ){
+        generalDescription = description.substring(i+1);
+    }
+    return generalDescription;
+}
