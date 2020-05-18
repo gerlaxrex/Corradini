@@ -33,9 +33,7 @@ module.exports.peoplePidContactForGET = function peoplePidContactForGET (req, re
 module.exports.peoplePidGET = function peoplePidGET (req, res, next) {
   var pid = req.swagger.params['pid'].value;
   var job = req.swagger.params['job'].value;
-  var limit = req.swagger.params['limit'].value;
-  var offset = req.swagger.params['offset'].value;
-  Person.peoplePidGET(pid,job,limit,offset)
+  Person.peoplePidGET(pid,job)
     .then(function (response) {
       utils.writeJson(res, response);
     })

@@ -30,19 +30,22 @@ exports.peopleGET = function(job,limit,offset) {
    let result = sqlDb('person');
    if(job != undefined){
      if(job == "collaborators"){
-       result = result.join('role','role.rid','=','person.rid').select('person.*').whereNot('role.rolename','Sponsor')
+       result = result.join('role','role.rid','=','person.rid').whereNot('role.rolename','Sponsor')
                                                                .andWhere('role.rolename','not like','%Assistant%');
      }else{
-       result = result.join('role','role.rid','=','person.rid').where('role.rolename',job).select('person.*');
+       result = result.join('role','role.rid','=','person.rid').where('role.rolename',job);
      }
    }
+
    if(limit != undefined){
      result = result.limit(limit);
    }
+
    if(offset != undefined){
      result = result.offset(offset);
    }
-   return result;
+
+   return result.select('person.*');
 }
 
 
@@ -57,33 +60,26 @@ exports.peopleGET = function(job,limit,offset) {
  * returns List
  **/
 exports.peoplePidContactForGET = function(pid,job,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "eid" : "eid",
-  "schedule" : 0,
-  "contact" : "contact",
-  "description" : "description",
-  "endtime" : "2000-01-23T04:56:07.000+00:00",
-  "begintime" : "2000-01-23T04:56:07.000+00:00",
-  "place" : "place",
-  "eventname" : "eventname"
-}, {
-  "eid" : "eid",
-  "schedule" : 0,
-  "contact" : "contact",
-  "description" : "description",
-  "endtime" : "2000-01-23T04:56:07.000+00:00",
-  "begintime" : "2000-01-23T04:56:07.000+00:00",
-  "place" : "place",
-  "eventname" : "eventname"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
+  let result = sqlDb('person').where('pid',pid).join('event','person.pid','=','event.contact');
+
+  if(job != undefined){
+    if(job == "collaborators"){
+      result = result.join('role','role.rid','=','person.rid').whereNot('role.rolename','Sponsor')
+                                                              .andWhere('role.rolename','not like','%Assistant%');
+    }else{
+      result = result.join('role','role.rid','=','person.rid').where('role.rolename',job);
     }
-  });
+  }
+
+  if(limit != undefined){
+    result = result.limit(limit);
+  }
+
+  if(offset != undefined){
+    result = result.offset(offset);
+  }
+
+  return result.select('event.*');
 }
 
 
@@ -97,32 +93,17 @@ exports.peoplePidContactForGET = function(pid,job,limit,offset) {
  * offset Integer pagination offset for the given page (optional)
  * returns List
  **/
-exports.peoplePidGET = function(pid,job,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "firstname" : "firstname",
-  "role" : "role",
-  "phonenumber" : "phonenumber",
-  "pid" : "pid",
-  "email" : "email",
-  "age" : 7,
-  "lastname" : "lastname"
-}, {
-  "firstname" : "firstname",
-  "role" : "role",
-  "phonenumber" : "phonenumber",
-  "pid" : "pid",
-  "email" : "email",
-  "age" : 7,
-  "lastname" : "lastname"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
+exports.peoplePidGET = function(pid,job) {
+  let result = sqlDb('person').where('pid',pid);
+  if(job != undefined){
+    if(job == "collaborators"){
+      result = result.join('role','role.rid','=','person.rid').whereNot('role.rolename','Sponsor')
+                                                              .andWhere('role.rolename','not like','%Assistant%');
+    }else{
+      result = result.join('role','role.rid','=','person.rid').where('role.rolename',job);
     }
-  });
+  }
+  return result.select('person.*');
 }
 
 
@@ -137,27 +118,29 @@ exports.peoplePidGET = function(pid,job,limit,offset) {
  * returns List
  **/
 exports.peoplePidInvolvedGET = function(pid,job,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "description" : "description",
-  "servicename" : "servicename",
-  "place" : "place",
-  "type" : "type",
-  "sid" : "sid"
-}, {
-  "description" : "description",
-  "servicename" : "servicename",
-  "place" : "place",
-  "type" : "type",
-  "sid" : "sid"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
+  let result = sqlDb('person').where('pid',pid).join('involves','person.pid','=','involves.person')
+                                               .join('service','service.sid','=','involves.service');
+  if(job != undefined){
+    if(job == "collaborators"){
+      result = result.join('role','role.rid','=','person.rid').whereNot('role.rolename','Sponsor')
+                                                              .andWhere('role.rolename','not like','%Assistant%');
+    }else{
+      result = result.join('role','role.rid','=','person.rid').where('role.rolename',job);
     }
-  });
+  }
+
+  result = result.select('service.*');
+  
+  if(limit != undefined){
+    result = result.limit(limit);
+  }
+
+  if(offset != undefined){
+    result = result.offset(offset);
+  }
+
+  return result;
+  
 }
 
 
@@ -170,14 +153,14 @@ exports.peoplePidInvolvedGET = function(pid,job,limit,offset) {
  * returns Object
  **/
 exports.peoplePidRoleGET = function(pid,job) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = "{}";
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
+  let result = sqlDb('person').where('pid',pid).join('role','person.rid','=','role.rid');
+  if(job != undefined){
+    if(job == "collaborators"){
+      result = result.whereNot('role.rolename','Sponsor').andWhere('role.rolename','not like','%Assistant%');
+    }else{
+      result = result.where('role.rolename',job);
     }
-  });
+  }
+  return result.select('role.*');
 }
 
