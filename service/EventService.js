@@ -1,5 +1,24 @@
 'use strict';
 
+let sqlDb;
+
+
+
+//Setting the connection to the db and check if table exists
+exports.EventDbSetup = function(connection){
+  sqlDb = connection;
+  console.log("checking if table exists.");
+  return sqlDb.schema.hasTable('event').then((exists) => {
+    if(!exists){
+      console.log("Table does not exit!");
+    }else{
+      console.log("It exits.")
+    }
+  });
+};
+
+
+
 
 /**
  * gets the person in charge as contact for the event

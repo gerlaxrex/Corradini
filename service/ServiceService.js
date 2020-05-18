@@ -1,5 +1,20 @@
 'use strict';
 
+let sqlDb;
+
+
+//SETTING UP THE CONNECTION FOR THE COMMUNICATION OF THE DATABASE 
+exports.ServiceDbSetup = function(connection){
+  sqlDb = connection;
+  console.log("checking if table exists.");
+  return sqlDb.schema.hasTable('service').then((exists) => {
+    if(!exists){
+      console.log("Table does not exit!");
+    }else{
+      console.log("It exits.")
+    }
+  });
+};
 
 /**
  * gets all the services arranged by the association
