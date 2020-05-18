@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "Simple API for the Corradini Center website."
-  version: "1.1.0"
+  version: "1.1.1"
   title: "Corradini"
   contact:
     email: "gerlando.re@mail.polimi.it"
@@ -25,37 +25,15 @@ paths:
     get:
       tags:
       - "role"
-      summary: "gets all the roles in the association"
-      description: "This retrieves the group for free or all roles in the association"
-      operationId: "rolesGET"
-      produces:
-      - "application/json"
-      parameters: []
-      responses:
-        "200":
-          description: "so a collection of roles"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Role"
-        "404":
-          description: "roles could not be found"
-        default:
-          description: "Something went wrong in the request."
-      x-swagger-router-controller: "Role"
-  /roles/{type}:
-    get:
-      tags:
-      - "role"
       summary: "gets a group of roles of a given type, 'free' or 'all'"
       description: "retrieves all the roles of a given type, chosen by the corresponding\
         \ group"
-      operationId: "rolesTypeGET"
+      operationId: "rolesGET"
       produces:
       - "application/json"
       parameters:
       - name: "type"
-        in: "path"
+        in: "query"
         description: "type of group of role"
         required: true
         type: "string"
@@ -84,14 +62,14 @@ paths:
         default:
           description: "Something went wrong in the request."
       x-swagger-router-controller: "Role"
-  /roles/{type}/{rid}:
+  /roles/{rid}:
     get:
       tags:
       - "role"
       summary: "gets a specific role in a group of given type, specified by id"
       description: "retrieves a single role that is in a group of roles of a given\
         \ 'type'"
-      operationId: "rolesTypeRidGET"
+      operationId: "rolesRidGET"
       produces:
       - "application/json"
       parameters:
@@ -101,23 +79,13 @@ paths:
         required: true
         type: "string"
       - name: "type"
-        in: "path"
+        in: "query"
         description: "type of group of role"
-        required: true
+        required: false
         type: "string"
         enum:
         - "free"
         - "all"
-      - name: "limit"
-        in: "query"
-        description: "max number of items per page"
-        required: false
-        type: "integer"
-      - name: "offset"
-        in: "query"
-        description: "pagination offset for the given page"
-        required: false
-        type: "integer"
       responses:
         "200":
           description: "roles by category, so a collection of roles"
@@ -146,6 +114,14 @@ paths:
         description: "pk of the role in the group of given type"
         required: true
         type: "string"
+      - name: "type"
+        in: "query"
+        description: "type of group of role"
+        required: false
+        type: "string"
+        enum:
+        - "free"
+        - "all"
       - name: "limit"
         in: "query"
         description: "max number of items per page"
@@ -176,38 +152,16 @@ paths:
     get:
       tags:
       - "service"
-      summary: "gets all the services arranged by the association"
-      description: "Take the list of all services in the association"
-      operationId: "servicesGET"
-      produces:
-      - "application/json"
-      parameters: []
-      responses:
-        "200":
-          description: "service by category, so a collection of roles"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Service"
-        "404":
-          description: "services could not be found"
-        default:
-          description: "Something went wrong in the request"
-      x-swagger-router-controller: "Service"
-  /services/{type}:
-    get:
-      tags:
-      - "service"
       summary: "gets all the services of a given type"
       description: "retrieves all the services of a given type."
-      operationId: "servicesTypeGET"
+      operationId: "servicesGET"
       produces:
       - "application/json"
       parameters:
       - name: "type"
-        in: "path"
+        in: "query"
         description: "type of group of role"
-        required: true
+        required: false
         type: "string"
       - name: "limit"
         in: "query"
@@ -231,13 +185,13 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Service"
-  /services/{type}/{sid}:
+  /services/{sid}:
     get:
       tags:
       - "service"
       summary: "gets a specific service of a given type"
       description: "retrieves a service given the identifier and the type."
-      operationId: "servicesTypeSidGET"
+      operationId: "servicesSidGET"
       produces:
       - "application/json"
       parameters:
@@ -247,20 +201,10 @@ paths:
         required: true
         type: "string"
       - name: "type"
-        in: "path"
+        in: "query"
         description: "type of group of role"
-        required: true
+        required: false
         type: "string"
-      - name: "limit"
-        in: "query"
-        description: "max number of items per page"
-        required: false
-        type: "integer"
-      - name: "offset"
-        in: "query"
-        description: "pagination offset for the given page"
-        required: false
-        type: "integer"
       responses:
         "200":
           description: "selected service by service identifier"
@@ -287,6 +231,11 @@ paths:
         in: "path"
         description: "identifier of the selected service"
         required: true
+        type: "string"
+      - name: "type"
+        in: "query"
+        description: "type of group of role"
+        required: false
         type: "string"
       - name: "limit"
         in: "query"
@@ -320,7 +269,7 @@ paths:
       - "service"
       summary: "gets all the people involved in a given Service"
       description: "retrieves the people helping in the service."
-      operationId: "servicesTypeSidInvolvingGET"
+      operationId: "servicesSidInvolvingGET"
       produces:
       - "application/json"
       parameters:
@@ -328,6 +277,11 @@ paths:
         in: "path"
         description: "identifier of the selected service"
         required: true
+        type: "string"
+      - name: "type"
+        in: "query"
+        description: "type of group of role"
+        required: false
         type: "string"
       - name: "limit"
         in: "query"
@@ -359,38 +313,16 @@ paths:
     get:
       tags:
       - "event"
-      summary: "gets all the group of events"
-      description: "Take the list of every event"
-      operationId: "eventsGET"
-      produces:
-      - "application/json"
-      parameters: []
-      responses:
-        "200":
-          description: "events by category, so a collection of group of events"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Event"
-        "404":
-          description: "events could not be found"
-        default:
-          description: "Something went wrong in the request"
-      x-swagger-router-controller: "Event"
-  /events/{month}:
-    get:
-      tags:
-      - "event"
       summary: "gets all the events by the selected month"
       description: "retrieves all the events happening on a given month"
-      operationId: "eventsMonthGET"
+      operationId: "eventsGET"
       produces:
       - "application/json"
       parameters:
       - name: "month"
-        in: "path"
+        in: "query"
         description: "month in which there is all the group of events"
-        required: true
+        required: false
         type: "integer"
       - name: "limit"
         in: "query"
@@ -406,8 +338,6 @@ paths:
         "200":
           description: "collection of events"
           schema:
-            minimum: 0
-            maximum: 10
             type: "array"
             items:
               $ref: "#/definitions/Event"
@@ -416,13 +346,13 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Event"
-  /events/{month}/{eid}:
+  /events/{eid}:
     get:
       tags:
       - "event"
       summary: "gets an the event from the selected month"
       description: "retrieves the event in a given month with a given identifier."
-      operationId: "eventsMonthEidGET"
+      operationId: "eventsEidGET"
       produces:
       - "application/json"
       parameters:
@@ -432,18 +362,8 @@ paths:
         required: true
         type: "string"
       - name: "month"
-        in: "path"
+        in: "query"
         description: "month in which there is all the group of events"
-        required: true
-        type: "integer"
-      - name: "limit"
-        in: "query"
-        description: "max number of items per page"
-        required: false
-        type: "integer"
-      - name: "offset"
-        in: "query"
-        description: "pagination offset for the given page"
         required: false
         type: "integer"
       responses:
@@ -472,6 +392,11 @@ paths:
         description: "identifier for the event"
         required: true
         type: "string"
+      - name: "month"
+        in: "query"
+        description: "month in which there is all the group of events"
+        required: false
+        type: "integer"
       - name: "limit"
         in: "query"
         description: "max number of items per page"
@@ -511,14 +436,9 @@ paths:
         description: "identifier for the event"
         required: true
         type: "string"
-      - name: "limit"
+      - name: "month"
         in: "query"
-        description: "max number of items per page"
-        required: false
-        type: "integer"
-      - name: "offset"
-        in: "query"
-        description: "pagination offset for the given page"
+        description: "month in which there is all the group of events"
         required: false
         type: "integer"
       responses:
@@ -537,38 +457,16 @@ paths:
     get:
       tags:
       - "person"
-      summary: "gets the list of all people in the association."
-      description: "Take the list of all people"
-      operationId: "peopleGET"
-      produces:
-      - "application/json"
-      parameters: []
-      responses:
-        "200":
-          description: "events by category, so a collection of group of events"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Person"
-        "404":
-          description: "people could not be found"
-        default:
-          description: "Something went wrong in the request"
-      x-swagger-router-controller: "Person"
-  /people/{job}:
-    get:
-      tags:
-      - "person"
       summary: "gets all the people involved in a given type of job"
       description: "retrieves all the people having a given type of job in the association."
-      operationId: "peopleJobGET"
+      operationId: "peopleGET"
       produces:
       - "application/json"
       parameters:
       - name: "job"
-        in: "path"
+        in: "query"
         description: "role of the person"
-        required: true
+        required: false
         type: "string"
       - name: "limit"
         in: "query"
@@ -582,7 +480,7 @@ paths:
         type: "integer"
       responses:
         "200":
-          description: "people by type of job"
+          description: "people by type of job or all people"
           schema:
             type: "array"
             items:
@@ -592,13 +490,13 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Person"
-  /people/{job}/{pid}:
+  /people/{pid}:
     get:
       tags:
       - "person"
       summary: "gets a specific person that has a given job"
       description: "retrieves a person with a specific id and a type of job"
-      operationId: "peopleJobPidGET"
+      operationId: "peoplePidGET"
       produces:
       - "application/json"
       parameters:
@@ -608,9 +506,9 @@ paths:
         required: true
         type: "string"
       - name: "job"
-        in: "path"
+        in: "query"
         description: "role of the person"
-        required: true
+        required: false
         type: "string"
       - name: "limit"
         in: "query"
@@ -649,6 +547,11 @@ paths:
         description: "role of the person"
         required: true
         type: "string"
+      - name: "job"
+        in: "query"
+        description: "role of the person"
+        required: false
+        type: "string"
       responses:
         "200":
           description: "role of the selected person"
@@ -675,6 +578,11 @@ paths:
         in: "path"
         description: "role of the person"
         required: true
+        type: "string"
+      - name: "job"
+        in: "query"
+        description: "role of the person"
+        required: false
         type: "string"
       - name: "limit"
         in: "query"
@@ -714,6 +622,11 @@ paths:
         in: "path"
         description: "identifier of the person"
         required: true
+        type: "string"
+      - name: "job"
+        in: "query"
+        description: "role of the person"
+        required: false
         type: "string"
       - name: "limit"
         in: "query"

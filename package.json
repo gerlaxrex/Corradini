@@ -1,6 +1,6 @@
 {
   "name": "corradini",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Simple API for the Corradini Center website.",
   "main": "index.js",
   "scripts": {

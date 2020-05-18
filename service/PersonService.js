@@ -17,70 +17,66 @@ exports.PersonDbSetup = function(connection){
 };
 
 
-
-/**
- * gets the list of all people in the association.
- * Take the list of all people
- *
- * returns List
- **/
-exports.peopleGET = function() {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "firstname" : "firstname",
-  "role" : "role",
-  "phonenumber" : "phonenumber",
-  "pid" : "pid",
-  "email" : "email",
-  "age" : 7,
-  "lastname" : "lastname"
-}, {
-  "firstname" : "firstname",
-  "role" : "role",
-  "phonenumber" : "phonenumber",
-  "pid" : "pid",
-  "email" : "email",
-  "age" : 7,
-  "lastname" : "lastname"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
 /**
  * gets all the people involved in a given type of job
  * retrieves all the people having a given type of job in the association.
  *
- * job String role of the person
+ * job String role of the person (optional)
  * limit Integer max number of items per page (optional)
  * offset Integer pagination offset for the given page (optional)
  * returns List
  **/
-exports.peopleJobGET = function(job,limit,offset) {
+exports.peopleGET = function(job,limit,offset) {
+   let result = sqlDb('person');
+   if(job != undefined){
+     if(job == "collaborators"){
+       result = result.join('role','role.rid','=','person.rid').select('person.*').whereNot('role.rolename','Sponsor')
+                                                               .andWhere('role.rolename','not like','%Assistant%');
+     }else{
+       result = result.join('role','role.rid','=','person.rid').where('role.rolename',job).select('person.*');
+     }
+   }
+   if(limit != undefined){
+     result = result.limit(limit);
+   }
+   if(offset != undefined){
+     result = result.offset(offset);
+   }
+   return result;
+}
+
+
+/**
+ * gets a specific person that has a given job
+ * retrieves the events for which the person is the contact.
+ *
+ * pid String role of the person
+ * job String role of the person (optional)
+ * limit Integer max number of items per page (optional)
+ * offset Integer pagination offset for the given page (optional)
+ * returns List
+ **/
+exports.peoplePidContactForGET = function(pid,job,limit,offset) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "firstname" : "firstname",
-  "role" : "role",
-  "phonenumber" : "phonenumber",
-  "pid" : "pid",
-  "email" : "email",
-  "age" : 7,
-  "lastname" : "lastname"
+  "eid" : "eid",
+  "schedule" : 0,
+  "contact" : "contact",
+  "description" : "description",
+  "endtime" : "2000-01-23T04:56:07.000+00:00",
+  "begintime" : "2000-01-23T04:56:07.000+00:00",
+  "place" : "place",
+  "eventname" : "eventname"
 }, {
-  "firstname" : "firstname",
-  "role" : "role",
-  "phonenumber" : "phonenumber",
-  "pid" : "pid",
-  "email" : "email",
-  "age" : 7,
-  "lastname" : "lastname"
+  "eid" : "eid",
+  "schedule" : 0,
+  "contact" : "contact",
+  "description" : "description",
+  "endtime" : "2000-01-23T04:56:07.000+00:00",
+  "begintime" : "2000-01-23T04:56:07.000+00:00",
+  "place" : "place",
+  "eventname" : "eventname"
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -96,12 +92,12 @@ exports.peopleJobGET = function(job,limit,offset) {
  * retrieves a person with a specific id and a type of job
  *
  * pid String role of the person
- * job String role of the person
+ * job String role of the person (optional)
  * limit Integer max number of items per page (optional)
  * offset Integer pagination offset for the given page (optional)
  * returns List
  **/
-exports.peopleJobPidGET = function(pid,job,limit,offset) {
+exports.peoplePidGET = function(pid,job,limit,offset) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
@@ -120,46 +116,6 @@ exports.peopleJobPidGET = function(pid,job,limit,offset) {
   "email" : "email",
   "age" : 7,
   "lastname" : "lastname"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * gets a specific person that has a given job
- * retrieves the events for which the person is the contact.
- *
- * pid String role of the person
- * limit Integer max number of items per page (optional)
- * offset Integer pagination offset for the given page (optional)
- * returns List
- **/
-exports.peoplePidContactForGET = function(pid,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "eid" : "eid",
-  "schedule" : 0,
-  "contact" : "contact",
-  "description" : "description",
-  "endtime" : "2000-01-23T04:56:07.000+00:00",
-  "begintime" : "2000-01-23T04:56:07.000+00:00",
-  "place" : "place",
-  "eventname" : "eventname"
-}, {
-  "eid" : "eid",
-  "schedule" : 0,
-  "contact" : "contact",
-  "description" : "description",
-  "endtime" : "2000-01-23T04:56:07.000+00:00",
-  "begintime" : "2000-01-23T04:56:07.000+00:00",
-  "place" : "place",
-  "eventname" : "eventname"
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -175,11 +131,12 @@ exports.peoplePidContactForGET = function(pid,limit,offset) {
  * retrieves the services in which the person works.
  *
  * pid String identifier of the person
+ * job String role of the person (optional)
  * limit Integer max number of items per page (optional)
  * offset Integer pagination offset for the given page (optional)
  * returns List
  **/
-exports.peoplePidInvolvedGET = function(pid,limit,offset) {
+exports.peoplePidInvolvedGET = function(pid,job,limit,offset) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
@@ -209,9 +166,10 @@ exports.peoplePidInvolvedGET = function(pid,limit,offset) {
  * retrieves the role of a specific person
  *
  * pid String role of the person
+ * job String role of the person (optional)
  * returns Object
  **/
-exports.peoplePidRoleGET = function(pid) {
+exports.peoplePidRoleGET = function(pid,job) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = "{}";
