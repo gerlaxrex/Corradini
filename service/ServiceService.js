@@ -155,7 +155,7 @@ exports.servicesTypeSidGET = function(sid,type,limit,offset) {
  * offset Integer pagination offset for the given page (optional)
  * returns List
  **/
-exports.servicesSidInvolvingGET = function(sid,type,limit,offset) {
+exports.servicesSidInvolvingGET = function(sid,limit,offset) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
