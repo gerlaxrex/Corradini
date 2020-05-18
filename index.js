@@ -12,7 +12,7 @@ var serverPort = 8080;
 
 // swaggerRouter configuration
 var options = {
-  swaggerUi: path.join(__dirname, '/swagger.json' ),
+  swaggerUi: path.join(__dirname, '/swagger.json'),
   controllers: path.join(__dirname, './controllers'),
   useStubs: process.env.NODE_ENV === 'development' // Conditionally turn on stubs (mock mode)
 };
@@ -36,12 +36,12 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   // Serve the Swagger documents and Swagger UI
   app.use(middleware.swaggerUi());
 
-  // Serve static content from
-  app.use('/',serveStatic( __dirname + "/PresentationLayer/html"));
-  app.use('/css',serveStatic( __dirname + "/PresentationLayer/css"));
-  app.use('/images',serveStatic( __dirname + "/PresentationLayer/images"));
- 
-  
+  app.use('/',serveStatic('PresentationLayer/html'));
+  app.use('/css',serveStatic('PresentationLayer/css'));
+  app.use('/images',serveStatic('PresentationLayer/images'));
+  app.use('/js',serveStatic('PresentationLayer/js'));
+
+
   // Start the server
   http.createServer(app).listen(serverPort, function () {
     console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);

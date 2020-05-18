@@ -39,3 +39,40 @@ module.exports.peopleJobPidGET = function peopleJobPidGET (req, res, next) {
       utils.writeJson(res, response);
     });
 };
+
+module.exports.peoplePidContactForGET = function peoplePidContactForGET (req, res, next) {
+  var pid = req.swagger.params['pid'].value;
+  var limit = req.swagger.params['limit'].value;
+  var offset = req.swagger.params['offset'].value;
+  Person.peoplePidContactForGET(pid,limit,offset)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.peoplePidInvolvedGET = function peoplePidInvolvedGET (req, res, next) {
+  var pid = req.swagger.params['pid'].value;
+  var limit = req.swagger.params['limit'].value;
+  var offset = req.swagger.params['offset'].value;
+  Person.peoplePidInvolvedGET(pid,limit,offset)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.peoplePidRoleGET = function peoplePidRoleGET (req, res, next) {
+  var pid = req.swagger.params['pid'].value;
+  Person.peoplePidRoleGET(pid)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};

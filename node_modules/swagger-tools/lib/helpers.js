@@ -24,7 +24,16 @@
 
 'use strict';
 
-var _ = require('lodash');
+// Done this way to make the Browserify build smaller
+var _ = {
+  each: require('lodash-compat/collection/each'),
+  indexOf: require('lodash-compat/array/indexOf'),
+  isArray: require('lodash-compat/lang/isArray'),
+  isPlainObject: require('lodash-compat/lang/isPlainObject'),
+  isString: require('lodash-compat/lang/isString'),
+  isUndefined: require('lodash-compat/lang/isUndefined'),
+  reduce: require('lodash-compat/collection/reduce')
+};
 var JsonRefs = require('json-refs');
 var traverse = require('traverse');
 var ZSchema = require('z-schema');

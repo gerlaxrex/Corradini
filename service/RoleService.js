@@ -2,7 +2,7 @@
 
 
 /**
- * gets all the categories of roles in the association (**useless, to be eliminated**)
+ * gets all the roles in the association
  * This retrieves the group for free or all roles in the association
  *
  * returns List
@@ -11,17 +11,51 @@ exports.rolesGET = function() {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "freeRoles" : 1,
-  "roleName" : "Gardener",
-  "description" : "A gardener assistant",
-  "rid" : "r0001",
-  "type" : "free"
+  "freeroles" : 0,
+  "rolename" : "rolename",
+  "description" : "description",
+  "rid" : "rid",
+  "type" : "type"
 }, {
-  "freeRoles" : 1,
-  "roleName" : "Gardener",
-  "description" : "A gardener assistant",
-  "rid" : "r0001",
-  "type" : "free"
+  "freeroles" : 0,
+  "rolename" : "rolename",
+  "description" : "description",
+  "rid" : "rid",
+  "type" : "type"
+} ];
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * gets all the services that require the role with the given {rid}
+ * returns an array of services related to the role.
+ *
+ * rid String pk of the role in the group of given type
+ * limit Integer max number of items per page (optional)
+ * offset Integer pagination offset for the given page (optional)
+ * returns List
+ **/
+exports.rolesRidRelatedToGET = function(rid,limit,offset) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = [ {
+  "description" : "description",
+  "servicename" : "servicename",
+  "place" : "place",
+  "type" : "type",
+  "sid" : "sid"
+}, {
+  "description" : "description",
+  "servicename" : "servicename",
+  "place" : "place",
+  "type" : "type",
+  "sid" : "sid"
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -45,10 +79,17 @@ exports.rolesTypeGET = function(type,limit,offset) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "rid" : "r0001",
-  "name" : "garden assistant",
-  "type" : "not free",
-  "descr" : "hi"
+  "freeroles" : 0,
+  "rolename" : "rolename",
+  "description" : "description",
+  "rid" : "rid",
+  "type" : "type"
+}, {
+  "freeroles" : 0,
+  "rolename" : "rolename",
+  "description" : "description",
+  "rid" : "rid",
+  "type" : "type"
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);

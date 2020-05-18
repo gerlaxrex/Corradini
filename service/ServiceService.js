@@ -2,60 +2,24 @@
 
 
 /**
- * gets all the categories of services in the association
- * We take the list of all categories of services in an association
+ * gets all the services arranged by the association
+ * Take the list of all services in the association
  *
- * limit Integer max number of items per page (optional)
- * offset Integer pagination offset for the given page (optional)
  * returns List
  **/
-exports.servicesGET = function(limit,offset) {
+exports.servicesGET = function() {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
   "description" : "description",
+  "servicename" : "servicename",
   "place" : "place",
-  "serviceName" : "serviceName",
   "type" : "type",
   "sid" : "sid"
 }, {
   "description" : "description",
+  "servicename" : "servicename",
   "place" : "place",
-  "serviceName" : "serviceName",
-  "type" : "type",
-  "sid" : "sid"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * gets all the services of a given type
- * retrieves all the services of a given type, chosen by the corresponding group in '/services'
- *
- * type String type of group of role
- * limit Integer max number of items per page (optional)
- * offset Integer pagination offset for the given page (optional)
- * returns List
- **/
-exports.servicesTypeGET = function(type,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "description" : "description",
-  "place" : "place",
-  "serviceName" : "serviceName",
-  "type" : "type",
-  "sid" : "sid"
-}, {
-  "description" : "description",
-  "place" : "place",
-  "serviceName" : "serviceName",
   "type" : "type",
   "sid" : "sid"
 } ];
@@ -70,7 +34,82 @@ exports.servicesTypeGET = function(type,limit,offset) {
 
 /**
  * gets a specific service of a given type
- * retrieves all the services of a given type, chosen by the corresponding group in '/services'
+ * retrieves all the events in which the service is presented.
+ *
+ * sid String identifier of the selected service
+ * type String type of group of role
+ * limit Integer max number of items per page (optional)
+ * offset Integer pagination offset for the given page (optional)
+ * returns List
+ **/
+exports.servicesSidPresentedInGET = function(sid,type,limit,offset) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = [ {
+  "eid" : "eid",
+  "schedule" : 0,
+  "contact" : "contact",
+  "description" : "description",
+  "endtime" : "2000-01-23T04:56:07.000+00:00",
+  "begintime" : "2000-01-23T04:56:07.000+00:00",
+  "place" : "place",
+  "eventname" : "eventname"
+}, {
+  "eid" : "eid",
+  "schedule" : 0,
+  "contact" : "contact",
+  "description" : "description",
+  "endtime" : "2000-01-23T04:56:07.000+00:00",
+  "begintime" : "2000-01-23T04:56:07.000+00:00",
+  "place" : "place",
+  "eventname" : "eventname"
+} ];
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * gets all the services of a given type
+ * retrieves all the services of a given type.
+ *
+ * type String type of group of role
+ * limit Integer max number of items per page (optional)
+ * offset Integer pagination offset for the given page (optional)
+ * returns List
+ **/
+exports.servicesTypeGET = function(type,limit,offset) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = [ {
+  "description" : "description",
+  "servicename" : "servicename",
+  "place" : "place",
+  "type" : "type",
+  "sid" : "sid"
+}, {
+  "description" : "description",
+  "servicename" : "servicename",
+  "place" : "place",
+  "type" : "type",
+  "sid" : "sid"
+} ];
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * gets a specific service of a given type
+ * retrieves a service given the identifier and the type.
  *
  * sid String identifier of the selected service
  * type String type of group of role
@@ -82,6 +121,45 @@ exports.servicesTypeSidGET = function(sid,type,limit,offset) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = "{}";
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * gets all the people involved in a given Service
+ * retrieves the people helping in the service.
+ *
+ * sid String identifier of the selected service
+ * type String type of group of role
+ * limit Integer max number of items per page (optional)
+ * offset Integer pagination offset for the given page (optional)
+ * returns List
+ **/
+exports.servicesTypeSidInvolvingGET = function(sid,type,limit,offset) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = [ {
+  "firstname" : "firstname",
+  "role" : "role",
+  "phonenumber" : "phonenumber",
+  "pid" : "pid",
+  "email" : "email",
+  "age" : 7,
+  "lastname" : "lastname"
+}, {
+  "firstname" : "firstname",
+  "role" : "role",
+  "phonenumber" : "phonenumber",
+  "pid" : "pid",
+  "email" : "email",
+  "age" : 7,
+  "lastname" : "lastname"
+} ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {

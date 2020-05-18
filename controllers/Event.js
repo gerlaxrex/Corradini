@@ -3,10 +3,34 @@
 var utils = require('../utils/writer.js');
 var Event = require('../service/EventService');
 
-module.exports.eventsGET = function eventsGET (req, res, next) {
+module.exports.eventsEidContactGET = function eventsEidContactGET (req, res, next) {
+  var eid = req.swagger.params['eid'].value;
   var limit = req.swagger.params['limit'].value;
   var offset = req.swagger.params['offset'].value;
-  Event.eventsGET(limit,offset)
+  Event.eventsEidContactGET(eid,limit,offset)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.eventsEidPresentsGET = function eventsEidPresentsGET (req, res, next) {
+  var eid = req.swagger.params['eid'].value;
+  var limit = req.swagger.params['limit'].value;
+  var offset = req.swagger.params['offset'].value;
+  Event.eventsEidPresentsGET(eid,limit,offset)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.eventsGET = function eventsGET (req, res, next) {
+  Event.eventsGET()
     .then(function (response) {
       utils.writeJson(res, response);
     })
