@@ -128,8 +128,6 @@ exports.peoplePidInvolvedGET = function(pid,job,limit,offset) {
       result = result.join('role','role.rid','=','person.rid').where('role.rolename',job);
     }
   }
-
-  result = result.select('service.*');
   
   if(limit != undefined){
     result = result.limit(limit);
@@ -139,7 +137,7 @@ exports.peoplePidInvolvedGET = function(pid,job,limit,offset) {
     result = result.offset(offset);
   }
 
-  return result;
+  return result.select('service.*');
   
 }
 
