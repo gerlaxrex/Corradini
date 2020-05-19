@@ -26,27 +26,23 @@ exports.RoleDbSetup = function(connection){
  * returns List
  **/
 exports.rolesGET = function(type,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "freeroles" : 0,
-  "rolename" : "rolename",
-  "description" : "description",
-  "rid" : "rid",
-  "type" : "type"
-}, {
-  "freeroles" : 0,
-  "rolename" : "rolename",
-  "description" : "description",
-  "rid" : "rid",
-  "type" : "type"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let result = sqlDb('role');
+  
+  if(type == 'free'){
+    result = result.where('freeroles','>',0);
+  }else if(type == 'all'){
+    ;
+  }else{
+    console.log('ERROR: type for role is not well defined');
+  }
+
+  if(limit != undefined){
+    result = result.limit(limit);
+  }
+  if(offset != undefined){
+    result = result.offset(offset);
+  }
+  return result;
 }
 
 
@@ -59,15 +55,11 @@ exports.rolesGET = function(type,limit,offset) {
  * returns Object
  **/
 exports.rolesRidGET = function(rid,type) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = "{}";
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let result = sqlDb('role').where('rid',rid);
+  if(type != undefined){
+    result = result.where('type',type);
+  }
+  return result;
 }
 
 
@@ -82,26 +74,20 @@ exports.rolesRidGET = function(rid,type) {
  * returns List
  **/
 exports.rolesRidRelatedToGET = function(rid,type,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "description" : "description",
-  "servicename" : "servicename",
-  "place" : "place",
-  "type" : "type",
-  "sid" : "sid"
-}, {
-  "description" : "description",
-  "servicename" : "servicename",
-  "place" : "place",
-  "type" : "type",
-  "sid" : "sid"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let result = sqlDb('role').where('rid',rid).join('relates','relates.role','=','role.rid')
+                                             .join('service','service.sid','=','relates.service');
+  if(type != undefined){
+    result = result.where('role.type',type);
+  }
+
+  if(limit != undefined){
+    result = result.limit(limit);
+  }
+
+  if(offset != undefined){
+    result = result.offset(offset);
+  }
+
+  return result.select('service.*');
 }
 
