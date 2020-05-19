@@ -17,8 +17,6 @@ exports.EventDbSetup = function(connection){
   });
 };
 
-
-
 /**
  * gets the person in charge as contact for the event
  * retrieves the person that is the official contact for that event.
@@ -28,15 +26,11 @@ exports.EventDbSetup = function(connection){
  * returns Object
  **/
 exports.eventsEidContactGET = function(eid,month) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = "{}";
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let result = sqlDb('event').where('event.eid',eid).join('person','person.pid','=','event.contact');
+  if(month != undefined){
+    result = result.whereRaw('extract(month from begintime) = '+month);
+  }
+  return result.select('person.*');
 }
 
 
@@ -49,15 +43,11 @@ exports.eventsEidContactGET = function(eid,month) {
  * returns Object
  **/
 exports.eventsEidGET = function(eid,month) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = "{}";
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let result = sqlDb('event').where('eid',eid);
+  if(month != undefined){
+    result = result.whereRaw('extract(month from begintime) = '+month);
+  }
+  return result;
 }
 
 
@@ -72,27 +62,21 @@ exports.eventsEidGET = function(eid,month) {
  * returns List
  **/
 exports.eventsEidPresentsGET = function(eid,month,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "description" : "description",
-  "servicename" : "servicename",
-  "place" : "place",
-  "type" : "type",
-  "sid" : "sid"
-}, {
-  "description" : "description",
-  "servicename" : "servicename",
-  "place" : "place",
-  "type" : "type",
-  "sid" : "sid"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let result = sqlDb('event').where('event.eid',eid).join('presents','presents.event','=','event.eid')
+                                                    .join('service','service.sid','=','presents.service');
+  if(month != undefined){
+    result = result.whereRaw('extract(month from begintime) = '+month);
+  }
+
+  if(limit != undefined){
+    result = result.limit(limit);
+  }
+  
+  if(offset != undefined){
+    result = result.offset(offset);
+  }
+
+  return result.select('service.*');
 }
 
 
@@ -106,32 +90,19 @@ exports.eventsEidPresentsGET = function(eid,month,limit,offset) {
  * returns List
  **/
 exports.eventsGET = function(month,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "eid" : "eid",
-  "schedule" : 0,
-  "contact" : "contact",
-  "description" : "description",
-  "endtime" : "2000-01-23T04:56:07.000+00:00",
-  "begintime" : "2000-01-23T04:56:07.000+00:00",
-  "place" : "place",
-  "eventname" : "eventname"
-}, {
-  "eid" : "eid",
-  "schedule" : 0,
-  "contact" : "contact",
-  "description" : "description",
-  "endtime" : "2000-01-23T04:56:07.000+00:00",
-  "begintime" : "2000-01-23T04:56:07.000+00:00",
-  "place" : "place",
-  "eventname" : "eventname"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let result = sqlDb('event');
+  if(month != undefined){
+    result = result.whereRaw('extract(month from begintime) = '+month);
+  }
+
+  if (limit != undefined){
+    result = result.limit(limit);
+  }
+
+  if(offset != undefined){
+    result = result.offset(offset);
+  }
+
+  return result;
 }
 
