@@ -26,27 +26,17 @@ exports.ServiceDbSetup = function(connection){
  * returns List
  **/
 exports.servicesGET = function(type,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "description" : "description",
-  "servicename" : "servicename",
-  "place" : "place",
-  "type" : "type",
-  "sid" : "sid"
-}, {
-  "description" : "description",
-  "servicename" : "servicename",
-  "place" : "place",
-  "type" : "type",
-  "sid" : "sid"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let result = sqlDb('service');
+  if(type != undefined){
+    result = result.where('type',type);
+  }
+  if(limit != undefined){
+    result = result.limit(limit);
+  }
+  if(offset != undefined){
+    result = result.offset(offset);
+  }
+  return result;
 }
 
 
@@ -59,15 +49,11 @@ exports.servicesGET = function(type,limit,offset) {
  * returns Object
  **/
 exports.servicesSidGET = function(sid,type) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = "{}";
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let result = sqlDb('service').where('sid',sid);
+  if(type != undefined){
+    result = result.where('type',type);
+  }
+  return result;
 }
 
 
@@ -82,31 +68,21 @@ exports.servicesSidGET = function(sid,type) {
  * returns List
  **/
 exports.servicesSidInvolvingGET = function(sid,type,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "firstname" : "firstname",
-  "role" : "role",
-  "phonenumber" : "phonenumber",
-  "pid" : "pid",
-  "email" : "email",
-  "age" : 7,
-  "lastname" : "lastname"
-}, {
-  "firstname" : "firstname",
-  "role" : "role",
-  "phonenumber" : "phonenumber",
-  "pid" : "pid",
-  "email" : "email",
-  "age" : 7,
-  "lastname" : "lastname"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let result = sqlDb('service').where('sid',sid).join('involves','service.sid','=','involves.service')
+                                                .join('person','person.pid','=','involves.person');
+  if(type != undefined){
+    result = result.where('service.type',type);
+  }
+
+  if(limit != undefined){
+    result = result.limit(limit);
+  }
+  if(offset != undefined){
+    result = result.offset(offset);
+  }
+
+  return result.select('person.*');
+
 }
 
 
@@ -121,32 +97,19 @@ exports.servicesSidInvolvingGET = function(sid,type,limit,offset) {
  * returns List
  **/
 exports.servicesSidPresentedInGET = function(sid,type,limit,offset) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "eid" : "eid",
-  "schedule" : 0,
-  "contact" : "contact",
-  "description" : "description",
-  "endtime" : "2000-01-23T04:56:07.000+00:00",
-  "begintime" : "2000-01-23T04:56:07.000+00:00",
-  "place" : "place",
-  "eventname" : "eventname"
-}, {
-  "eid" : "eid",
-  "schedule" : 0,
-  "contact" : "contact",
-  "description" : "description",
-  "endtime" : "2000-01-23T04:56:07.000+00:00",
-  "begintime" : "2000-01-23T04:56:07.000+00:00",
-  "place" : "place",
-  "eventname" : "eventname"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let result = sqlDb('service').where('service.sid',sid).join('presents','presents.service','=','service.sid')
+                                                    .join('event','event.eid','=','presents.event');
+  if(type != undefined){
+    result = result.where('service.type',type);
+  }
+
+  if(limit != undefined){
+    result = result.limit(limit);
+  }
+  if(offset != undefined){
+    result = result.offset(offset);
+  }
+
+  return result.select('event.*');
 }
 
