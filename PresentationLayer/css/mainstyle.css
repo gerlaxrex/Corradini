@@ -133,6 +133,13 @@ body{
     }
 }
 
+@media (max-width: 768px){
+    #logoimage{
+        height: 70px;
+        width: 70px;
+    }
+}
+
 #MainWrapper>.row{
     height: 100%;
 }
