@@ -297,7 +297,14 @@ a{
 
 .pagination li>a{
     color: rgb(94, 185, 67);
+    border-color: black;
 }
+
+.pagination li>a#selected{
+    color: rgb(255, 255, 255);
+    background-color: rgb(124, 87, 45);
+}
+
 
 .pagination{
     float: right;

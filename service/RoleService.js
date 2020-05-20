@@ -57,7 +57,13 @@ exports.rolesGET = function(type,limit,offset) {
 exports.rolesRidGET = function(rid,type) {
   let result = sqlDb('role').where('rid',rid);
   if(type != undefined){
-    result = result.where('type',type);
+    if(type == 'free'){
+      result = result.where('freeroles','>',0);
+    }else if(type == 'all'){
+      ;
+    }else{
+      console.log('ERROR: type for role is not well defined');
+    }
   }
   return result;
 }
@@ -77,7 +83,13 @@ exports.rolesRidRelatedToGET = function(rid,type,limit,offset) {
   let result = sqlDb('role').where('rid',rid).join('relates','relates.role','=','role.rid')
                                              .join('service','service.sid','=','relates.service');
   if(type != undefined){
-    result = result.where('role.type',type);
+    if(type == 'free'){
+      result = result.where('freeroles','>',0);
+    }else if(type == 'all'){
+      ;
+    }else{
+      console.log('ERROR: type for role is not well defined');
+    }
   }
 
   if(limit != undefined){

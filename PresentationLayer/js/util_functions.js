@@ -1,4 +1,5 @@
 //Function for mapping the Query string in the URL
+//Used within getUrlParams(urlOrQueryString) function
 function _mapUrlParams(queryString) {
     return queryString    
         .split('&') 
@@ -28,9 +29,13 @@ function getUrlParams(urlOrQueryString) {
 
 //Extract the general description from the single description of a role/service/event for the type
 function getGeneralDescription(description){
-    const generalDescription = "";
+    var generalDescription = "";
     if((i = description.indexOf('//')) >= 0 ){
         generalDescription = description.substring(i+2);
     }
     return generalDescription;
+}
+
+function capitalize(string){
+    return string[0].toUpperCase() + string.slice(1);
 }
