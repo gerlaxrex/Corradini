@@ -1,5 +1,3 @@
-let monthsList = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-
 $(document).ready(()=>{      
     document.title = "Centro Corradini - Events"
     localStorage.setItem('breadcrumb',JSON.stringify(['Events']));
@@ -32,7 +30,7 @@ $(document).ready(()=>{
 
       var divToWrite = '<div class="groupElement">\
       <div class="groupImage"><img src="../images/farm.jpg"></div>\
-      <h3><a href="eventsbymonth.html?month='+ (actualMonth+month+offset*maxLimit)%12 +'">'+stringToWrite+'</a></h3>\
+      <h3><a href="eventsbymonth.html?month='+ formatNumber((actualMonth+month+offset*maxLimit)%12 +1) +'">'+stringToWrite+'</a></h3>\
       <p>'+monthsList[(actualMonth+month+offset*maxLimit)%12]+'\'s events.</p>';
       
       $('#groupContainer').append(divToWrite);

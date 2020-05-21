@@ -41,11 +41,41 @@ function capitalize(string){
 }
 
 
-
+//Function for the write of the Breadcrumb
 function writeBreadcrumb(array){
     var string = "> ";
     array.forEach(element => {
         string += element + ' > ';
     });
     $('.breadcumb').text(string);
+}
+
+//Function for the correct formatting of the integer
+function formatNumber(num){
+    if(num<10){
+        return '0'+ num;
+    }
+    return num;
+}
+
+//List of all months
+let monthsList = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function formatTimestamp(timestamp,mod){
+    var date = new Date(timestamp);
+    var year = date.getFullYear();
+    var month = monthsList[date.getMonth()];
+    var day = formatNumber(date.getDate());
+    var hours = formatNumber(date.getHours());
+    var minutes = formatNumber(date.getMinutes());
+    var time = hours + ':' + minutes;
+    if(mod == 'D M Y'){
+        return day + ' ' + month + ' ' + year;
+    }else if(mod == 'D M Y T'){
+        return day + ' ' + month + ' ' + year + ' ' + time;
+    }else if(mod == 'T'){
+        return time;
+    }else{
+        return date;
+    }
 }

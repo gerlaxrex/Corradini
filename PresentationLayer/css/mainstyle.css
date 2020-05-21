@@ -190,6 +190,11 @@ body{
     display: block;
 }
 
+a.disabled, a.disabled:hover{
+    color: grey;
+    text-decoration-line: line-through;
+}
+
 .groupElement:nth-child(even){
     width: 100%;
     border: solid rgb(94, 185, 67) 1px;
