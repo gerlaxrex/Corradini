@@ -39,3 +39,13 @@ function getGeneralDescription(description){
 function capitalize(string){
     return string[0].toUpperCase() + string.slice(1);
 }
+
+
+
+function writeBreadcrumb(array){
+    var string = "> ";
+    array.forEach(element => {
+        string += element + ' > ';
+    });
+    $('.breadcumb').text(string);
+}

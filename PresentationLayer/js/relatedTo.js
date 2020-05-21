@@ -4,9 +4,18 @@ $(document).ready(function(){
     let type = parameters['type'];
     let rolename = parameters['n'];
 
+    //set title     
     document.title = 'Centro Corradini - related to ' + localStorage.getItem('rolename');
     $('#groupContainer>h1').text('Services related to '+localStorage.getItem('rolename'));
 
+    //Set and write Breadcrumb
+    let path = JSON.parse(localStorage.getItem('breadcrumb'));
+    path[3] = 'Related Services';
+    localStorage.setItem('breadcrumb',JSON.stringify(path));
+
+    writeBreadcrumb(path);
+
+    //fetch from the apis
     fetch('../crrdn/roles/'+rid+'/relatedto?type='+type).then(response=>{
         return response.json();
     }).then(json=>{

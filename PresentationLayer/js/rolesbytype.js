@@ -31,7 +31,7 @@ $(document).ready(function(){
       path[1] = capitalize(type) + ' Roles';
     }
 
-    $(".breadcumb").text(path[0] +' > '+ path[1]);
+    writeBreadcrumb(path);
 
     localStorage.setItem('breadcrumb',JSON.stringify(path));
 

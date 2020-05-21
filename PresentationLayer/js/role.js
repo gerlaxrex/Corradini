@@ -49,6 +49,7 @@ $(document).ready(function(){
                 path[2] = capitalize(json[0]['rolename']);
                 path[3] = 'Assignments';
             }
+            localStorage.setItem('breadcrumb',JSON.stringify(path));
 
         }else if(sez == 'description'){
             var elementParts = '<h1>'+ json[0]['rolename'] +'</h1>\
@@ -65,6 +66,7 @@ $(document).ready(function(){
                 path[2] = capitalize(json[0]['rolename']);
                 path[3] = 'Description';
             }
+            localStorage.setItem('breadcrumb',JSON.stringify(path));
 
         }else{
             var elementParts = '<h1>ERROR</h1>\
@@ -73,13 +75,13 @@ $(document).ready(function(){
 
             $('#roleContainer').append(elementParts);
         }
-        }).catch((error)=>{
+    }).catch((error)=>{
         console.log("An error Occurred: No role found with this identifier.");
-        var elementParts = '<h1>Ops.. nothing found :(</h1>\
-            <p>It seems that there are no results for the object you are trying to retrieve.</p>'; 
+        var elementParts = '<h1>Ops.. Error!:(</h1>\
+            <p>It seems that an error occurred, sorry!.</p>'; 
 
             $('#roleContainer').append(elementParts);
     }).then(()=>{
-        $('.breadcumb').text(path[0] + ' > ' + path[1] + ' > ' + path[2] + ' > ' + path[3]);
+        writeBreadcrumb(path);
     });
 });
