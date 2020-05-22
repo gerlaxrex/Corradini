@@ -40,6 +40,18 @@ exports.servicesGET = function(type,limit,offset) {
 }
 
 
+exports.servTypesGET = function(limit,offset) {
+  let result = sqlDb('service');
+  if(limit != undefined){
+    result = result.limit(limit);
+  }
+  if(offset != undefined){
+    result = result.offset(offset);
+  }
+  return result.distinct('service.type');
+}
+
+
 /**
  * gets a specific service of a given type
  * retrieves a service given the identifier and the type.

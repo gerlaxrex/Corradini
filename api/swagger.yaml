@@ -185,6 +185,40 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Service"
+
+  /servTypes:
+    get:
+      tags:
+      - "service"
+      summary: "gets all the types of services"
+      description: "retrieves all the types of services."
+      operationId: "servTypesGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "limit"
+        in: "query"
+        description: "max number of items per page"
+        required: false
+        type: "integer"
+      - name: "offset"
+        in: "query"
+        description: "pagination offset for the given page"
+        required: false
+        type: "integer"
+      responses:
+        "200":
+          description: "services by category, so a collection of services"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        "404":
+          description: "roles could not be found"
+        default:
+          description: "Something went wrong in the request"
+      x-swagger-router-controller: "Service"
+
   /services/{sid}:
     get:
       tags:

@@ -16,6 +16,19 @@ module.exports.servicesGET = function servicesGET (req, res, next) {
     });
 };
 
+
+module.exports.servTypesGET = function servicesTypesGET (req, res, next) {
+  var limit = req.swagger.params['limit'].value;
+  var offset = req.swagger.params['offset'].value;
+  Service.servTypesGET(limit,offset)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.servicesSidGET = function servicesSidGET (req, res, next) {
   var sid = req.swagger.params['sid'].value;
   var type = req.swagger.params['type'].value;
