@@ -32,7 +32,12 @@ $(document).ready(()=>{
 
     //Modify and Write the Breadcrumb
     let path = JSON.parse(localStorage.getItem('breadcrumb'));
-    path[1] = monthsList[month];
+    if(path.length == 1){
+        path.push(monthsList[month]+'\'s Events');
+    }else if(path.length > 1){
+        path = ['Events'];
+        path[1] = monthsList[month] + '\'s Events';
+    }
     localStorage.setItem('breadcrumb',JSON.stringify(path));
     writeBreadcrumb(path);
 

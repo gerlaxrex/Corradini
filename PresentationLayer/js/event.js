@@ -33,8 +33,15 @@ $(document).ready(function(){
     }).then(json => {
         let event = json[0];
         let divToWrite = "";
-        path[2] = capitalize(event['eventname']);
-        path[3] = capitalize(sez);
+        
+        if(path.length == 2){
+            path.push(capitalize(json[0]['eventname']));
+            path.push(capitalize(sez));
+        }else{
+            path[2] = capitalize(event['eventname']);
+            path[3] = capitalize(sez);
+        }
+        
         if(sez === 'description'){
             divToWrite = '<h1>'+event['eventname']+'</h1>\
             <h2> Description </h2>\

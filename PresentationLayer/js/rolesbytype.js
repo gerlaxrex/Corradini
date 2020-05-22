@@ -27,7 +27,8 @@ $(document).ready(function(){
     var path = JSON.parse(localStorage.getItem('breadcrumb'));
     if(path.length == 1){
       path.push(capitalize(type) + ' Roles');
-    }else{
+    }else if(path.length > 1){
+      path = ['Roles'];
       path[1] = capitalize(type) + ' Roles';
     }
 

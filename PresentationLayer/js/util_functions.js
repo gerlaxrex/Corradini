@@ -50,6 +50,7 @@ function writeBreadcrumb(array){
     $('.breadcumb').text(string);
 }
 
+
 //Function for the correct formatting of the integer
 function formatNumber(num){
     if(num<10){
@@ -60,6 +61,8 @@ function formatNumber(num){
 
 //List of all months
 let monthsList = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+let typesList = [];
 
 function formatTimestamp(timestamp,mod){
     var date = new Date(timestamp);
