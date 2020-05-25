@@ -6,36 +6,36 @@ let { ServiceDbSetup } = require("./ServiceService");
 let local = false;
 
 
-//For Local Connection
-const sqlDbFactory = require("knex");
-let sqlDb = sqlDbFactory({
-    debug: true,
-    client: 'pg',
-    searchPath: ['CorradiniDB','CorradiniDB'],
-    connection: {
-        host: /**/process.env.DATABASE_URL /*'127.0.0.1'*/,
-        user: 'postgres',
-        password: 'root',
-        database: 'CorradiniDB'
-    },
-    ssl: true
-});
-
-
-// //For Heroku Connection
+// //For Local Connection
 // const sqlDbFactory = require("knex");
 // let sqlDb = sqlDbFactory({
-//     debug: false,
+//     debug: true,
 //     client: 'pg',
-//     searchPath: ['d65a7i9u7uhv9n','CorradiniDB'],
+//     searchPath: ['CorradiniDB','CorradiniDB'],
 //     connection: {
-//         host: "ec2-54-246-90-10.eu-west-1.compute.amazonaws.com",
-//         user: 'rbjagrfxysmadu',
-//         password: '49a234e1fdc3150128cd7874dd6056e4f0ad2366f21c272825c6fda05dea4692',
-//         database: 'd65a7i9u7uhv9n'
+//         host: /**/process.env.DATABASE_URL /*'127.0.0.1'*/,
+//         user: 'postgres',
+//         password: 'root',
+//         database: 'CorradiniDB'
 //     },
 //     ssl: true
 // });
+
+
+//For Heroku Connection
+const sqlDbFactory = require("knex");
+let sqlDb = sqlDbFactory({
+    debug: false,
+    client: 'pg',
+    searchPath: ['d65a7i9u7uhv9n','CorradiniDB'],
+    connection: {
+        host: "ec2-54-246-90-10.eu-west-1.compute.amazonaws.com",
+        user: 'rbjagrfxysmadu',
+        password: '49a234e1fdc3150128cd7874dd6056e4f0ad2366f21c272825c6fda05dea4692',
+        database: 'd65a7i9u7uhv9n'
+    },
+    ssl: true
+});
 
 
 
