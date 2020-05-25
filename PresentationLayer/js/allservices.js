@@ -37,6 +37,7 @@ $(document).ready(function(){
             $('#groupContainer').append(divToWrite);
         }
         //Set the paging
+        $('#groupContainer').append('<ul class="pagination pagination-sm"></ul>');
         for(var i = 0; i != typesList.length; ++i){
             if(i%maxLimit == 0){
             let hrefString = '"./allservices.html?offset='+Math.floor(i/maxLimit)+'"';

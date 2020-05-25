@@ -30,8 +30,18 @@ function getUrlParams(urlOrQueryString) {
 //Extract the general description from the single description of a role/service/event for the type
 function getGeneralDescription(description){
     var generalDescription = "";
+    var len = '//'.length;
     if((i = description.indexOf('//')) >= 0 ){
-        generalDescription = description.substring(i+2);
+        generalDescription = description.substring(i+len);
+    }
+    return generalDescription;
+}
+
+function getServiceAssignments(description){
+    var generalDescription = "";
+    var len = 'Assignments:'.length;
+    if((i = description.indexOf('Assignments:')) >= 0 ){
+        generalDescription = description.substring(i+len);
     }
     return generalDescription;
 }

@@ -28,13 +28,13 @@
           </div>
           <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <li><a href="../association/association.html">Association</a></li>
-              <li><a href="../services/allservices.html">Services</a></li>
-              <li><a href="../people/peoplebytype.html">People</a></li>
-              <li><a href="../events/allevents.html">Events</a></li>
-              <li><a href="../roles/roles.html">Roles</a></li>
-              <li><a href="../contacts/contacts.html">Contacts</a></li>
-              <li><a href="#">News</a></li>
+              <li><a href="../association/association.html" aria-label="association">Association</a></li>
+              <li><a href="../services/allservices.html" aria-label="services">Services</a></li>
+              <li><a href="../people/allpeople.html" aria-label="people">People</a></li>
+              <li><a href="../events/allevents.html" aria-label="events">Events</a></li>
+              <li><a href="../roles/roles.html" aria-label="roles">Roles</a></li>
+              <li><a href="../contacts/contacts.html" aria-label="contacts">Contacts</a></li>
+              <li><a href="#" aria-label="news">News</a></li>
             </ul>
           </div>
         </div>
@@ -61,19 +61,19 @@
               <h1>All People</h1>
               <div class="groupElement">
                   <div class="groupImage"><img src="../images/farm.jpg"></div>
-                  <h3><a href="peoplebytype.html">Collaborators</a></h3>
-                  <p>The people working inside the association.</p>
+                  <h3><a href="peoplebytype.html?job=collaborators">Collaborators</a></h3>
+                  <p>The people working inside and for the association.</p>
               </div>
               
               <div class="groupElement">
                   <div class="groupImage"><img src="../images/orto2.jpg"></div>
-                  <h2><a href="peoplebytype.html">"Guys"</a></h2>
-                  <p>Our young helpers.</p>
+                  <h2><a href="peoplebytype.html?job=assistants">Our Assistants</a></h2>
+                  <p>Our young and good helpers.</p>
               </div>
 
               <div class="groupElement">
                   <div class="groupImage"><img src="../images/orto3.jpg"></div>
-                  <h2><a href="peoplebytype.html">Sustainers</a></h2>
+                  <h2><a href="peoplebytype.html?job=Sponsor">Our Sponsors</a></h2>
                   <p>Precious people that help us growing.</p>
               </div>
           </div>   
@@ -83,5 +83,10 @@
             @centrocorradini, 2020
         </div>
       </div>
+      <script src="../../js/util_functions.js"></script>
+      <script>
+        localStorage.setItem('breadcrumb',JSON.stringify(['People']));
+        writeBreadcrumb(['People']);
+      </script>
     </body>
 </html>

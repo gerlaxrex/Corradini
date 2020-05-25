@@ -23,8 +23,8 @@ $(document).ready(function(){
     }
 
     //Set the relatedTo link
-    $("#relatedto").attr('href','relatedTo.html?rid='+rid +'&type='+type);
-
+    $("#relatedto").attr('href','../transition.html?rid='+rid +'&type='+type+'&sez=relatedTo');
+    
     fetch(apiString).then((response)=>{
         return response.json();
     }).then((json)=>{

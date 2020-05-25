@@ -4,10 +4,6 @@
         <!-- BOOTSTRAP AND JQUERY-->
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../../css/mainstyle.css">
@@ -19,7 +15,7 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="index.html"><div id="logoimage"><img src="../images/LOGO.jpg" href="index.html" alt="Home"/></div></a>
+            <a class="navbar-brand" href="../index.html"><div id="logoimage"><img src="../images/LOGO.jpg" href="../index.html" alt="Home"/></div></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -28,13 +24,13 @@
           </div>
           <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <li><a href="../association/association.html">Association</a></li>
-              <li><a href="../services/allservices.html">Services</a></li>
-              <li><a href="../people/peoplebytype.html">People</a></li>
-              <li><a href="../events/allevents.html">Events</a></li>
-              <li><a href="../roles/roles.html">Roles</a></li>
-              <li><a href="../contacts/contacts.html">Contacts</a></li>
-              <li><a href="#">News</a></li>
+              <li><a href="../association/association.html" aria-label="association">Association</a></li>
+              <li><a href="../services/allservices.html" aria-label="services">Services</a></li>
+              <li><a href="../people/allpeople.html" aria-label="people">People</a></li>
+              <li><a href="../events/allevents.html" aria-label="events">Events</a></li>
+              <li><a href="../roles/roles.html" aria-label="roles">Roles</a></li>
+              <li><a href="../contacts/contacts.html" aria-label="contacts">Contacts</a></li>
+              <li><a href="#" aria-label="news">News</a></li>
             </ul>
           </div>
         </div>
@@ -55,21 +51,21 @@
                     <h3>Menu</h3>
                     <p>
                         <ul>
-                            <li><a>Next type</a></li>
-                            <li><a>Previous type</a></li>
-                            <li><a href="allpeople.html">Up to group to All People</a></li>
+                            <li><a id="previous">Previous type</a></li>
+                            <li><a id="next">Next type</a></li>
+                            <li><a href="allpeople.html">Up to People</a></li>
                         </ul>
                     </p>
                 </div>
                 <div class="col-lg-1"></div>
-                <div class="col-lg-8 maintext">
-                    <h1>Our Collaborators</h1>
-                    <div class="person">
+                <div class="col-lg-8 maintext" id="elementContainer">
+                    <h1></h1>
+                    <!-- <div class="person">
                         <div class="portrait"><img src="../images/mock.png"></div>
                         <div><a href="person.html">Luigi Rotondo</a></div>
-                    </div>
+                    </div> -->
 
-                    <div class="person">
+                    <!-- <div class="person">
                         <div class="portrait"><img src="../images/mock.png"/></div>
                         <div><a href="#">Nunzia Sgadari</a></div>
                     </div>
@@ -77,21 +73,23 @@
                     <div class="person">
                         <div class="portrait"><img src="../images/mock.png"/></div>
                         <a href="#">Giampiero Arato</a>
-                    </div>
+                    </div> -->
                     
-                    <ul class="pagination pagination-sm">
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                    </ul>
-                </div>   
-            </div>
+                    <!-- <ul class="pagination pagination-sm">
+                    </ul> -->
+                  </div>   
+                </div>
         </div>
         
         <div class="container-fluid fixed-bottom" id = "FooterContainer">
             @centrocorradini, 2020
         </div>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="../../js/util_functions.js"></script>
+        <script src="../../js/peoplebytype.js"></script>
     </body>
     </html>

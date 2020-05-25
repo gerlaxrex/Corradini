@@ -47,7 +47,27 @@ $(document).ready(()=>{
     fetch(apiString).then(response=>{
         return response.json();
     }).then(json => {
+
+        //Populate
+        for(var t = 0; t != maxLimit; ++t){
+            var index = t+offset*maxLimit;
+            if(index >= json.length){
+                continue;
+            }
+
+            var element = json[index];
+      
+            divToWrite = '<div class="groupElement">\
+                    <div class="groupImage"><img src="../images/farm.jpg"></div>\
+                    <h3><a href="event.html?eid='+element['eid']+'&month='+formatNumber(parameters['month'])+'">'+element['eventname']+'</a></h3>\
+                    <p><b>Date</b>: '+formatTimestamp(element['begintime'],'D M Y')+'</p>';
+
+            $('#elementContainer').append(divToWrite);
+        }
+
+
         //Do the pagination
+        $('#elementContainer').append('<ul class="pagination pagination-sm"></ul>');
         let numberOfEvents = json.length;
         for(var i = 0; i != numberOfEvents; ++i){
             if(i%maxLimit == 0){
@@ -59,7 +79,7 @@ $(document).ready(()=>{
                 }
             }
         }
-    }).then(()=>{
+    })/*.then(()=>{
         //Now fetch the data from the DB
         fetch(apiString+'&limit='+maxLimit+'&offset='+offset).then(response=>{
             return response.json();
@@ -81,12 +101,12 @@ $(document).ready(()=>{
                     $('#elementContainer').append(divToWrite);
                 });
             }
-        }).catch(error=>{
+        })*/.catch(error=>{
             divToWrite = '<div class="groupElement">\
                 <div class="groupImage"><img src="../images/farm.jpg"></div>\
                 <h3>Ops... an error occurred!</h3>\
                 <p>It seems that an error occurred in the retrieving of data!</p>';
             $('#elementContainer').append(divToWrite);
         });
-    });
+    //});
 });

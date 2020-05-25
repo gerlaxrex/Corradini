@@ -28,10 +28,13 @@ exports.PersonDbSetup = function(connection){
  **/
 exports.peopleGET = function(job,limit,offset) {
    let result = sqlDb('person');
+   
    if(job != undefined){
      if(job == "collaborators"){
        result = result.join('role','role.rid','=','person.rid').whereNot('role.rolename','Sponsor')
                                                                .andWhere('role.rolename','not like','%Assistant%');
+     }else if (job == "assistants"){
+       result = result.join('role','role.rid','=','person.rid').where('role.rolename','like','%Assistant%');
      }else{
        result = result.join('role','role.rid','=','person.rid').where('role.rolename',job);
      }
@@ -66,6 +69,8 @@ exports.peoplePidContactForGET = function(pid,job,limit,offset) {
     if(job == "collaborators"){
       result = result.join('role','role.rid','=','person.rid').whereNot('role.rolename','Sponsor')
                                                               .andWhere('role.rolename','not like','%Assistant%');
+    }else if (job == "assistants"){
+      result = result.join('role','role.rid','=','person.rid').where('role.rolename','like','%Assistant%');
     }else{
       result = result.join('role','role.rid','=','person.rid').where('role.rolename',job);
     }
@@ -95,14 +100,18 @@ exports.peoplePidContactForGET = function(pid,job,limit,offset) {
  **/
 exports.peoplePidGET = function(pid,job) {
   let result = sqlDb('person').where('pid',pid);
+
   if(job != undefined){
     if(job == "collaborators"){
       result = result.join('role','role.rid','=','person.rid').whereNot('role.rolename','Sponsor')
                                                               .andWhere('role.rolename','not like','%Assistant%');
+    }else if (job == "assistants"){
+      result = result.join('role','role.rid','=','person.rid').where('role.rolename','like','%Assistant%');
     }else{
       result = result.join('role','role.rid','=','person.rid').where('role.rolename',job);
     }
   }
+
   return result.select('person.*');
 }
 
@@ -120,15 +129,18 @@ exports.peoplePidGET = function(pid,job) {
 exports.peoplePidInvolvedGET = function(pid,job,limit,offset) {
   let result = sqlDb('person').where('pid',pid).join('involves','person.pid','=','involves.person')
                                                .join('service','service.sid','=','involves.service');
+
   if(job != undefined){
-    if(job == "collaborators"){
-      result = result.join('role','role.rid','=','person.rid').whereNot('role.rolename','Sponsor')
-                                                              .andWhere('role.rolename','not like','%Assistant%');
-    }else{
-      result = result.join('role','role.rid','=','person.rid').where('role.rolename',job);
-    }
+     if(job == "collaborators"){
+       result = result.join('role','role.rid','=','person.rid').whereNot('role.rolename','Sponsor')
+                                                               .andWhere('role.rolename','not like','%Assistant%');
+     }else if (job == "assistants"){
+       result = result.join('role','role.rid','=','person.rid').where('role.rolename','like','%Assistant%');
+     }else{
+       result = result.join('role','role.rid','=','person.rid').where('role.rolename',job);
+     }
   }
-  
+
   if(limit != undefined){
     result = result.limit(limit);
   }
@@ -152,13 +164,18 @@ exports.peoplePidInvolvedGET = function(pid,job,limit,offset) {
  **/
 exports.peoplePidRoleGET = function(pid,job) {
   let result = sqlDb('person').where('pid',pid).join('role','person.rid','=','role.rid');
+  
   if(job != undefined){
     if(job == "collaborators"){
-      result = result.whereNot('role.rolename','Sponsor').andWhere('role.rolename','not like','%Assistant%');
+      result = result.join('role','role.rid','=','person.rid').whereNot('role.rolename','Sponsor')
+                                                              .andWhere('role.rolename','not like','%Assistant%');
+    }else if (job == "assistants"){
+      result = result.join('role','role.rid','=','person.rid').where('role.rolename','like','%Assistant%');
     }else{
-      result = result.where('role.rolename',job);
+      result = result.join('role','role.rid','=','person.rid').where('role.rolename',job);
     }
   }
+  
   return result.select('role.*');
 }
 

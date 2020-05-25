@@ -56,13 +56,14 @@ $(document).ready(function(){
       
             var divToWrite = '<div class="groupElement">\
             <div class="groupImage"><img src="../images/farm.jpg"></div>\
-            <h3><a href="servicebytype.html?sid='+ json[index]['sid'] +'&type='+ json[index]['type'] +'">'+stringToWrite+'</a></h3>\
+            <h3><a href="service.html?sid='+ json[index]['sid'] +'&type='+ json[index]['type'] +'">'+stringToWrite+'</a></h3>\
             <p>'+ getGeneralDescription(json[index]['description']) +'</p>';
             
             $('#elementContainer').append(divToWrite);
         }
 
         //Set the paging
+        $('#elementContainer').append('<ul class="pagination pagination-sm"></ul>');
         for(var i = 0; i != json.length; ++i){
             if(i%maxLimit == 0){
             let hrefString = '"./servicesbytype.html?offset='+Math.floor(i/maxLimit)+'"';

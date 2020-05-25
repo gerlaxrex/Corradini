@@ -45,6 +45,29 @@ $(document).ready(function(){
     fetch(apiString).then((response) =>{
       return response.json();
     }).then((json)=>{
+      //Populate
+      for(var t = 0; t != maxLimit; ++t){
+        var index = t+offset*maxLimit;
+        if(index >= json.length){
+            continue;
+        }
+
+        var element = json[index];
+  
+        var refToRole = 'role.html?rid='+element['rid']+'&type='+type+'&sez=description';  
+        var divToWrite = '<div class="groupElement"> \
+              <div class="groupImage"><img src="../images/farm.jpg"></div> \
+              <h3><a href="'+ refToRole +'">'+element['rolename']+'</a></h3> \
+              <p>'+ getGeneralDescription(element['description']) +'</p> \
+              <p>Free positions: <span class="counter">'+element['freeroles']+'</span></p> \
+          </div>';
+          
+        $('#elementContainer').append(divToWrite);
+    }
+
+
+      //Do the pagination
+      $('#elementContainer').append('<ul class="pagination pagination-sm"></ul>');
       let numberOfRoles = json.length;
       for(var i = 0; i != numberOfRoles; ++i){
         if(i%maxLimit == 0){
@@ -56,7 +79,7 @@ $(document).ready(function(){
           }
         }
       }
-    }).then(()=>{
+    })/*.then(()=>{
       //Fetch the results for the displayed page
       fetch(apiString + '&limit=' + maxLimit + '&offset=' + offset*maxLimit).then((response)=>{
         return response.json();
@@ -73,5 +96,11 @@ $(document).ready(function(){
           $('#elementContainer').append(divToWrite);  
         });
       });
-    });
+    });*/.catch(error=>{
+            divToWrite = '<div class="groupElement">\
+            <div class="groupImage"><img src="../images/farm.jpg"></div>\
+            <h3>Ops... an error occurred!</h3>\
+            <p>It seems that an error occurred in the retrieving of data!</p>';
+        $('#elementContainer').append(divToWrite);
+      });
   });

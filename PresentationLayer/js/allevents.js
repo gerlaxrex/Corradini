@@ -36,7 +36,8 @@ $(document).ready(()=>{
       $('#groupContainer').append(divToWrite);
       
     }
-    
+
+    $('#groupContainer').append('<ul class="pagination pagination-sm"></ul>');
     //Set the paging
     for(var i = 0; i != monthsList.length; ++i){
         if(i%maxLimit == 0){

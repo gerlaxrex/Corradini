@@ -26,6 +26,9 @@ $(document).ready(function(){
     $("#back").attr('href','./eventsbymonth.html?month='+formatNumber(parameters['month']));
     $("#back").text('Up to ' + path[1]);
 
+    $("#contact").attr('href','../transition.html?eid='+eid +'&month='+ month +'&sez=contact');
+    $("#presents").attr('href','../transition.html?eid='+eid +'&month='+ month +'&sez=presents');
+
 
     //endpoint call
     fetch(apiString).then(response=>{
