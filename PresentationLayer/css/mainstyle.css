@@ -145,10 +145,45 @@ body{
         visibility: hidden;
         display: none;
     }
+
+    .portrait img{
+        display: none;
+        visibility: hidden;
+    }
+
+    #navbar li>a:hover{
+        background-color: rgb(94, 185, 67);
+        font-size: 1.7em;
+        transition: background-color 1.5s , color .5s;
+        /*color: rgb(115, 38, 126);*/
+        color: rgb(255, 255, 255);
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    
+    #navbar li>a:focus{
+        background-color: rgb(94, 185, 67);
+        font-size: 1.7em;
+        transition: background-color 1.5s, font-size .5s, color .5s;
+        color: rgb(115, 38, 126);
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        
+    }
+
+    .breadcumb{
+        visibility: hidden;
+    }
+
 }
 
 #MainWrapper{
     height: 100%;
+    min-height: 480px;
 }
 
 /* #MainWrapper>.row{
@@ -348,10 +383,27 @@ a:focus{
     height:400px;
 }
 
+
+.carousel-inner > .item{
+    height:400px;
+}
+
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
     width: 100%;
     object-fit: cover;
     object-position: 0 100%;
+}
+
+.carousel-caption{
+    margin: 0px;
+    padding-left: 60px;
+    padding-bottom: 50px;
+    left: 0px;
+    bottom: 0px;
+    font-size: 1.5em;
+    text-align: left;
+    width: 100%;
+    background-color: rgba(26, 26, 26, 0.5);
 }
 
 .icon{

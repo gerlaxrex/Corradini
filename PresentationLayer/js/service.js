@@ -15,6 +15,11 @@ $(document).ready(function(){
 
     //Read the Path for the breadcrumb and for the page positioning
     let path = JSON.parse(localStorage.getItem('breadcrumb'));
+    if(!path){
+        path = [];
+        path[0] = 'Services';
+        path[1] = capitalize(type) + ' Services';
+    }
 
     //Set the Back button to the right page.
     $("#back").attr('href','./servicebytype.html?type='+type)

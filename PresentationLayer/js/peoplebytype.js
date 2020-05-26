@@ -33,14 +33,14 @@ $(document).ready(function(){
         $('#previous').addClass('disabled');
         $('#previous').removeAttr('href');
     }else{
-        $('#previous').attr('href','peoplebytype.html?type='+ jobsList[typesList.indexOf(job)-1]);
+        $('#previous').attr('href','peoplebytype.html?job='+ jobsList[typesList.indexOf(job)-1]);
     }
 
     if((jobsList.indexOf(job) + 1) >= jobsList.length){
         $('#next').addClass('disabled');
         $('#next').removeAttr('href');
     }else{
-        $('#next').attr('href','peoplebytype.html?type='+ jobsList[jobsList.indexOf(job)+1]); 
+        $('#next').attr('href','peoplebytype.html?job='+ jobsList[jobsList.indexOf(job)+1]); 
     }
 
 
@@ -58,18 +58,18 @@ $(document).ready(function(){
             var stringToWrite = json[index]['firstname'] + ' ' + json[index]['lastname'];
       
             var divToWrite = '<div class="person">\
-                                <div class="portrait"><img src="../images/mock.png"></div>\
-                                <div><a href="person.html?pid='+json[index]['pid']+'&job='+job+'">'+stringToWrite+'</a></div>\
+                                <div class="portrait"><img src="../images/mock.png">\
+                                <div class="person-name"><a href="person.html?pid='+json[index]['pid']+'&job='+job+'">'+stringToWrite+'</a></div>\
+                                </div>\
                             </div>';
             
             $('#elementContainer').append(divToWrite);
         }
 
         $('#elementContainer').append('<span class="clear"></span>');
-
-
-        $('#elementContainer').append('<ul class="pagination pagination-sm"></ul>');
+        
         //Do the pagination
+        $('#elementContainer').append('<ul class="pagination pagination-sm"></ul>');
         let numberOfPeople = json.length;
         for(var i = 0; i != numberOfPeople; ++i){
             if(i%maxLimit == 0){
@@ -91,4 +91,41 @@ $(document).ready(function(){
         $('#elementContainer').append(divToWrite);
 
     });
+
+
+    // //For doing AJAX calls for the pagination 
+    // $(document).on("click", ".pagination a", function() {
+    //     event.preventDefault();
+    //     var cursor = $(this);
+    //     let url = "http://localhost:8080/crrdn/people?job="+job+"&offset="+ (cursor.text()-1) +"&limit="+maxLimit; 
+    //     $.ajax({
+    //         url: url,
+    //         type: "GET",
+    //         dataType: "json",
+    //         cache: false,
+    //         timeout: 5000,
+    //         complete: function() {
+    //             console.log('complete');
+    //         },
+    //         success: function(data) {
+    //             $('.person').remove();
+    //             console.log(url);
+    //             data.forEach(element => {
+    //                 var stringToWrite = element['firstname'] + ' ' + element['lastname'];
+    //                 console.log(stringToWrite);
+    //                 var divToWrite = '<div class="person">\
+    //                                     <div class="portrait"><img src="../images/mock.png"></div>\
+    //                                     <div><a href="person.html?pid='+element['pid']+'&job='+job+'">'+stringToWrite+'</a></div>\
+    //                                 </div>';
+                    
+    //                 $('#elementContainer').append(divToWrite);
+    //             });
+    //         },
+    //         error: function() {
+    //             console.log(err);
+    //         }
+    //     });
+    // });
 });
+
+

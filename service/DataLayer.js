@@ -38,7 +38,6 @@ let sqlDb = sqlDbFactory({
 });
 
 
-
 function setupDataLayer() {
     console.log("Setting up Data Layer");
     //When we have more than one setup, we have to use Promise.all()

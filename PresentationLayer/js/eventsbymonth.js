@@ -49,19 +49,28 @@ $(document).ready(()=>{
     }).then(json => {
 
         //Populate
-        for(var t = 0; t != maxLimit; ++t){
-            var index = t+offset*maxLimit;
-            if(index >= json.length){
-                continue;
+        if(json.length > 0){
+            for(var t = 0; t != maxLimit; ++t){
+                var index = t+offset*maxLimit;
+                if(index >= json.length){
+                    continue;
+                }
+
+                var element = json[index];
+        
+                divToWrite = '<div class="groupElement">\
+                        <div class="groupImage"><img src="../images/farm.jpg"></div>\
+                        <h3><a href="event.html?eid='+element['eid']+'&month='+formatNumber(parameters['month'])+'">'+element['eventname']+'</a></h3>\
+                        <p><b>Date</b>: '+formatTimestamp(element['begintime'],'D M Y')+'</p>';
+
+                $('#elementContainer').append(divToWrite);
             }
-
-            var element = json[index];
-      
+        }else{
             divToWrite = '<div class="groupElement">\
-                    <div class="groupImage"><img src="../images/farm.jpg"></div>\
-                    <h3><a href="event.html?eid='+element['eid']+'&month='+formatNumber(parameters['month'])+'">'+element['eventname']+'</a></h3>\
-                    <p><b>Date</b>: '+formatTimestamp(element['begintime'],'D M Y')+'</p>';
-
+                <div class="groupImage"><img src="../images/farm.jpg"></div>\
+                <h3>Ops... nothing found!</h3>\
+                <p>It seems that the events you were searching are not there!</p>';
+            
             $('#elementContainer').append(divToWrite);
         }
 

@@ -4,8 +4,25 @@ $(document).ready(function(){
     let apiString = '../crrdn/services?type=' + type;
     let maxLimit = 3;
     let offset = 0;
-    typesList = JSON.parse(localStorage.getItem('typesList'));
+    let typesList = JSON.parse(localStorage.getItem('typesList'));
     console.log(type);
+
+
+    if(!typesList){
+        typesList = [];
+        //You have to fetch
+        fetch('../crrdn/servTypes').then(response=>{
+            return response.json();
+        }).then(json=>{
+            json.forEach(element => {
+                typesList.push(element['type']);
+            });
+            localStorage.setItem('typesList',JSON.stringify(typesList));
+        }).catch(error=>{
+            console.log(error);
+        });
+    }
+
 
     //Setting the titles
     $('#elementContainer h1').text(type + ' Services');
