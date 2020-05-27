@@ -33,7 +33,7 @@ $(document).ready(function(){
         $('#previous').addClass('disabled');
         $('#previous').removeAttr('href');
     }else{
-        $('#previous').attr('href','peoplebytype.html?job='+ jobsList[typesList.indexOf(job)-1]);
+        $('#previous').attr('href','peoplebytype.html?job='+ jobsList[(jobsList.indexOf(job)-1)]);
     }
 
     if((jobsList.indexOf(job) + 1) >= jobsList.length){
