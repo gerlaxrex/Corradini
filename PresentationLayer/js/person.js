@@ -59,9 +59,9 @@ $(document).ready(function(){
                                     <b>e-mail: </b>'+element['email']+'<br>\
                                     <b>phone: </b>'+element['phonenumber']+'<br>\
                                     <b>Description: </b><br>\
-                                    </p>\
+                                    '+getSpecificDescription(element['description'])+'</p>\
                                     <h2>Interests</h2>\
-                                    <p>Guitar, nature, music.</p>\
+                                    <p>'+getInterests(element['description'])+'</p>\
                                     <span class="clear"></span>';
             }
 

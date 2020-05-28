@@ -37,13 +37,66 @@ function getGeneralDescription(description){
     return generalDescription;
 }
 
-function getServiceAssignments(description){
+//Get the specific description
+function getSpecificDescription(description){
+    let specificDescription = description;
+    if((i = description.indexOf('//')) >= 0){
+        specificDescription = description.substring(0,i);
+    }
+
+    if((j = specificDescription.indexOf('Activities: ')) >= 0){
+        specificDescription = specificDescription.substring(0,j);
+    }
+
+    if((k = specificDescription.indexOf('Assignments: ')) >= 0){
+        specificDescription = specificDescription.substring(0,k);
+    }
+
+    if((z = specificDescription.indexOf('Interests: ')) >= 0){
+        specificDescription = specificDescription.substring(0,z);
+    }
+
+    return specificDescription;
+}
+
+//For getting the Activities from an event description
+function getActivities(description){
+    var activities = "";
+    var len = 'Activities: '.length;
+    if((i = description.indexOf('Activities: ')) >= 0 ){
+        activities = description.substring(i+len);
+    }
+    return activities;
+}
+
+//For getting the Assignments from the description of a service
+function getAssignments(description){
     var generalDescription = "";
-    var len = 'Assignments:'.length;
-    if((i = description.indexOf('Assignments:')) >= 0 ){
+    var len = 'Assignments: '.length;
+    if((i = description.indexOf('Assignments: ')) >= 0 ){
         generalDescription = description.substring(i+len);
     }
     return generalDescription;
+}
+
+//For getting the Assignments from the description of a service
+function getSponsors(description){
+    var generalDescription = "";
+    var len = 'Sponsors: '.length;
+    if((i = description.indexOf('Sponsors: ')) >= 0 ){
+        generalDescription = description.substring(i+len);
+    }
+    return generalDescription;
+}
+
+//Function for getting the interests from the description of a person
+function getInterests(description){
+    var Interests = "";
+    var len = 'Interests: '.length;
+    if((i = description.indexOf('Interests: ')) >= 0 ){
+        Interests = description.substring(i+len);
+    }
+    return Interests;
 }
 
 function capitalize(string){
@@ -72,8 +125,10 @@ function formatNumber(num){
 //List of all months
 let monthsList = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
+//list for all the types
 let typesList = [];
 
+//function for formatting a timestamp coming from the DB
 function formatTimestamp(timestamp,mod){
     var date = new Date(timestamp);
     var year = date.getFullYear();

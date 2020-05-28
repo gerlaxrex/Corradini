@@ -8,8 +8,8 @@ info:
     email: "gerlando.re@mail.polimi.it"
   license:
     name: "Corradini-Website APIs"
-    url: "https://localhost:8080"
-host: "localhost:8080"
+    url: "https://corrdn.herokuapp.com/backend"
+host: "corrdn.herokuapp.com"
 basePath: "/crrdn"
 tags:
 - name: "role"

@@ -60,14 +60,14 @@ $(document).ready(function(){
                 <h2>Type</h2>\
                 <div class="typeTag">'+element['type']+'</div>\
                 <h2> Description </h2>\
-                <p>'+ element['description'] +'</p>\
+                <p>'+ getSpecificDescription(element['description']) +'</p>\
                 <div class="imagesTop"><img src="../images/orto3.jpg"/></div>';
             }else if(sez == 'place and Activities'){
                 stringToWrite = '<h1>'+element['servicename']+'</h1>\
                 <h2>Place</h2>\
-                <p>'+element['place']+'</p>\
+                <p>'+ element['place']+'</p>\
                 <h2> Activities </h2>\
-                <p>'+ element['description'] +'</p>\
+                <p>'+ getActivities(element['description']) +'</p>\
                 <div class="imagesTop"><img src="../images/orto3.jpg"/></div>';
             }
         }

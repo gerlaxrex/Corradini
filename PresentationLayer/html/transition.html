@@ -4,10 +4,6 @@
         <!-- BOOTSTRAP AND JQUERY-->
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/mainstyle.css">
@@ -55,15 +51,14 @@
                     <h3>Menu</h3>
                     <p>
                         <ul>
-                            <li><a href="allpeople.html">Back</a></li>
+                            <li><a href="allpeople.html" id="back">Back</a></li>
                         </ul>
                     </p>
                 </div>
                 <div class="col-lg-1"></div>
-                <div class="col-lg-8 maintext">
-                  <h1>Events Luigi is Contact For</h1>
+                <div class="col-lg-8 maintext" id="groupContainer">
+                  <h1></h1>
                   <ul>
-                      <li><a>Event 1</a></li>
                   </ul>
                     
                 </div>   
@@ -73,5 +68,12 @@
         <div class="container-fluid fixed-bottom" id = "FooterContainer">
             @centrocorradini, 2020
         </div>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src='../js/util_functions.js'></script>
+        <script src='../js/transition.js'></script>
     </body>
     </html>

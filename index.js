@@ -44,6 +44,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   app.use('/js',serveStatic('PresentationLayer/js'));
 
 
+
   // Start the server
   setupDataLayer().then(()=>{
     http.createServer(app).listen(process.env.PORT || serverPort, function () {

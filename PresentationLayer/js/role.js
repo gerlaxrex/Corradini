@@ -7,6 +7,9 @@ $(document).ready(function(){
     let apiString = '../crrdn/roles/' + rid + '?type=' + type
     let sez = parameters['sez'];
     
+    if(!sez){
+        sez = 'description';
+    }
 
     //Read the Path for the breadcrumb and for the page positioning
     let path = JSON.parse(localStorage.getItem('breadcrumb'));
@@ -33,11 +36,8 @@ $(document).ready(function(){
         if(sez == 'assignments'){
             var elementParts = '<h1>'+ json[0]['rolename'] +'</h1>\
             <h2>Assignments</h2>\
-            <p>The main assignments for this role are:\
-            <ul>\
-                <li>Help managing of the garden</li>\
-                <li>Help the guys in the garden</li>\
-            </ul>\
+            <p>\
+            '+getAssignments(json[0]['description'])+'\
             </p>\
             <div class="imagesTop"><img src="../images/orto.jpg"/></div>'; 
 
@@ -55,7 +55,7 @@ $(document).ready(function(){
             var elementParts = '<h1>'+ json[0]['rolename'] +'</h1>\
             <h2>Type:</h2> <span class="typeTag">'+ json[0]['type']+'</span>\
             <h2>Description</h2>\
-            <p>'+json[0]['description']+'</p>\
+            <p>'+getSpecificDescription(json[0]['description'])+'</p>\
             <div class="imagesTop"><img src="../images/orto.jpg"/></div>'; 
 
             $('#roleContainer').append(elementParts);

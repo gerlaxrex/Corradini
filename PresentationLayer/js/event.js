@@ -57,7 +57,7 @@ $(document).ready(function(){
             <p> <b>Time</b>: '+formatTimestamp(event['begintime'],'T')+' - '+formatTimestamp(event['endtime'],'T')+'</p>\
             <p>'+event['schedule']+'</p>\
             <h2> Sponsors </h2>\
-            <p></p>\
+            <p>'+ getSponsors(event['description']) +'</p>\
             <div class="imagesTop"><img src="../images/orto2.jpg"></div>';
 
         }else{
@@ -69,10 +69,4 @@ $(document).ready(function(){
     }).catch(error=>{
         console.log("error occurred: Error in fetching data.")
     });
-
-
-
-
-
-
 });

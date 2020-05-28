@@ -233,6 +233,14 @@ body{
     background: rgb(0,0,0);
     border: solid black 10px;
 }
+/* 
+.portrait > .person-name {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.70);
+} */
 
 .fade::after {
     height: 100%;
