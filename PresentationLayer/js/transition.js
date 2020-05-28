@@ -90,9 +90,15 @@ $(document).ready(function(){
                 }else{
                     json.forEach(element => {
                         //NEED TO FIND PERSON JOB HERE
-                        var hrefString = '"' + targetPage + '?pid='+element['pid']+'&job=' + element['job']+'"';
-                        stringToWrite = '<li><a href='+ hrefString +'>'+element['fistname']+' '+element['lastname']+'</a></li>';
-                        $('#groupContainer>ul').append(stringToWrite);
+                        fetch('../crrdn/people/'+element['pid']+'/role').then(response=>{
+                            return response.json();
+                        }).then(json =>{
+                            return getPersonJob(json[0]['rolename']);
+                        }).then((job)=>{
+                            var hrefString = '"' + targetPage + '?pid='+element['pid']+'&job=' + job+'"';
+                            stringToWrite = '<li><a href='+ hrefString +'>'+element['firstname']+' '+element['lastname']+'</a></li>';
+                            $('#groupContainer>ul').append(stringToWrite);
+                        });
                     });
                 }
             }).catch(error=>{
@@ -128,7 +134,7 @@ $(document).ready(function(){
                 var stringToWrite = '<h2>Ops... An error Occurred!</h2><p>It seems that an error occurred!</p>';
                 $('#groupContainer').append(stringToWrite);
             });
-        }else if(sez == 'involvedIn'){
+        }else if(sez == 'involved'){
             targetPage = '../services/service.html';
             //fetch from the apis
             fetch(apiString).then(response=>{
@@ -196,10 +202,15 @@ $(document).ready(function(){
                     $('#groupContainer').append(stringToWrite);    
                 }else{
                     json.forEach(element => {
-                        //WE NEED TO FIND THE PERSON JOB HERE
-                        var hrefString = '"' + targetPage + '?pid='+element['pid']+'&job=' + element['job']+'"';
-                        stringToWrite = '<li><a href='+ hrefString +'>'+element['firstname']+' '+element['lastname']+'</a></li>';
-                        $('#groupContainer>ul').append(stringToWrite);
+                        fetch('../crrdn/people/'+element['pid']+'/role').then(response=>{
+                            return response.json();
+                        }).then(json =>{
+                            return getPersonJob(json[0]['rolename']);
+                        }).then((job)=>{
+                            var hrefString = '"' + targetPage + '?pid='+element['pid']+'&job=' + job+'"';
+                            stringToWrite = '<li><a href='+ hrefString +'>'+element['firstname']+' '+element['lastname']+'</a></li>';
+                            $('#groupContainer>ul').append(stringToWrite);
+                        });
                     });
                 }
             }).catch(error=>{
@@ -231,4 +242,5 @@ $(document).ready(function(){
     }
     
     console.log(apiString);
+    localStorage.removeItem('breadcrumb');
 });

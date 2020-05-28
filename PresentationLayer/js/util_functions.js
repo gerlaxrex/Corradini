@@ -27,6 +27,16 @@ function getUrlParams(urlOrQueryString) {
     return {};
 }
 
+function getPersonJob(rolename){
+    if(rolename == 'Sponsor' || rolename == 'sponsor'){
+        return 'Sponsor';
+    }else if(rolename.includes('Assistant') || rolename.includes('assistant')){
+        return 'assistants';
+    }else{
+        return 'collaborators';
+    }
+}
+
 //Extract the general description from the single description of a role/service/event for the type
 function getGeneralDescription(description){
     var generalDescription = "";

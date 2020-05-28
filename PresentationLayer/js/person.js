@@ -34,7 +34,7 @@ $(document).ready(function(){
 
     //Set the transition links
     $("#contactFor").attr('href','../transition.html?pid='+ pid +'&job='+ job +'&sez=contactFor');
-    $("#involvedIn").attr('href','../transition.html?pid='+ pid +'&job='+ job +'&sez=involvedIn');
+    $("#involvedIn").attr('href','../transition.html?pid='+ pid +'&job='+ job +'&sez=involved');
     $("#role").attr('href','../transition.html?pid='+ pid +'&job='+ job +'&sez=role');
 
     if(sez == 'generalities and Interests'){
