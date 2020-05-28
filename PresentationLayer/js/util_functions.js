@@ -73,9 +73,23 @@ function getSpecificDescription(description){
 function getActivities(description){
     var activities = "";
     var len = 'Activities: '.length;
+
     if((i = description.indexOf('Activities: ')) >= 0 ){
         activities = description.substring(i+len);
     }
+
+    if((j = activities.indexOf('//')) >= 0){
+        activities = activities.substring(0,j);
+    }
+
+    if((k = activities.indexOf('Assignments: ')) >= 0){
+        activities = activities.substring(0,k);
+    }
+
+    if((z = activities.indexOf('Interests: ')) >= 0){
+        activities = activities.substring(0,z);
+    }
+
     return activities;
 }
 
@@ -86,6 +100,19 @@ function getAssignments(description){
     if((i = description.indexOf('Assignments: ')) >= 0 ){
         generalDescription = description.substring(i+len);
     }
+
+    if((j = generalDescription.indexOf('//')) >= 0){
+        generalDescription = generalDescription.substring(0,j);
+    }
+
+    if((k = generalDescription.indexOf('Activities: ')) >= 0){
+        generalDescription = generalDescription.substring(0,k);
+    }
+
+    if((z = generalDescription.indexOf('Interests: ')) >= 0){
+        generalDescription = generalDescription.substring(0,z);
+    }
+
     return generalDescription;
 }
 
@@ -96,6 +123,19 @@ function getSponsors(description){
     if((i = description.indexOf('Sponsors: ')) >= 0 ){
         generalDescription = description.substring(i+len);
     }
+
+    if((j = generalDescription.indexOf('//')) >= 0){
+        generalDescription = generalDescription.substring(0,j);
+    }
+
+    if((k = generalDescription.indexOf('Activities: ')) >= 0){
+        generalDescription = generalDescription.substring(0,k);
+    }
+
+    if((z = generalDescription.indexOf('Interests: ')) >= 0){
+        generalDescription = generalDescription.substring(0,z);
+    }
+
     return generalDescription;
 }
 
@@ -105,6 +145,18 @@ function getInterests(description){
     var len = 'Interests: '.length;
     if((i = description.indexOf('Interests: ')) >= 0 ){
         Interests = description.substring(i+len);
+    }
+
+    if((j = Interests.indexOf('//')) >= 0){
+        Interests = Interests.substring(0,j);
+    }
+
+    if((k = Interests.indexOf('Activities: ')) >= 0){
+        Interests = Interests.substring(0,k);
+    }
+
+    if((z = Interests.indexOf('Interests: ')) >= 0){
+        Interests = Interests.substring(0,z);
     }
     return Interests;
 }
