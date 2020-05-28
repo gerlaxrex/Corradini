@@ -183,7 +183,7 @@ $(document).ready(function(){
     if(eid){
         page = '../events/event.html';
         apiString = '../crrdn/events/'+eid +'/'+sez;
-        $('#back').attr('href','../events/event.html?eid='+eid+'&month='+month);
+        $('#back').attr('href','../events/event.html?eid='+eid+'&month='+formatNumber(month));
         if(sez == 'contact'){
             targetPage = '../people/person.html';
             //fetch from the apis
