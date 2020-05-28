@@ -40,7 +40,7 @@ $(document).ready(function(){
                 }else{
                     json.forEach(element => {
                         var hrefString = '"' + targetPage + '?sid='+element['sid']+'&type=' + element['type']+'"';
-                        stringToWrite = '<li><a href='+ hrefString +'>'+element['servicename']+'</a></li>';
+                        stringToWrite = '<li><a href='+ hrefString +'>'+element['servicename'] + ' ' + '(' + element['type'] + ')' +'</a></li>';
                         $('#groupContainer>ul').append(stringToWrite);
                     });
                 }
@@ -69,7 +69,7 @@ $(document).ready(function(){
                 }else{
                     json.forEach(element => {
                         var hrefString = '"' + targetPage + '?eid='+element['eid']+'&month=' + element['month']+'"';
-                        stringToWrite = '<li><a href='+ hrefString +'>'+element['eventname']+'</a></li>';
+                        stringToWrite = '<li><a href='+ hrefString +'>'+element['eventname'] + ' (' + monthsList[month-1] + ')'+'</a></li>';
                         $('#groupContainer>ul').append(stringToWrite);
                     });
                 }
@@ -93,10 +93,10 @@ $(document).ready(function(){
                         fetch('../crrdn/people/'+element['pid']+'/role').then(response=>{
                             return response.json();
                         }).then(json =>{
-                            return getPersonJob(json[0]['rolename']);
+                            return [getPersonJob(json[0]['rolename']),json[0]['rolename']];
                         }).then((job)=>{
-                            var hrefString = '"' + targetPage + '?pid='+element['pid']+'&job=' + job+'"';
-                            stringToWrite = '<li><a href='+ hrefString +'>'+element['firstname']+' '+element['lastname']+'</a></li>';
+                            var hrefString = '"' + targetPage + '?pid='+element['pid']+'&job=' + job[0]+'"';
+                            stringToWrite = '<li><a href='+ hrefString +'>'+element['firstname']+' '+element['lastname']+ ' (' + job[1] + ')'+'</a></li>';
                             $('#groupContainer>ul').append(stringToWrite);
                         });
                     });
@@ -126,7 +126,7 @@ $(document).ready(function(){
                 }else{
                     json.forEach(element => {
                         var hrefString = '"' + targetPage + '?eid='+element['eid']+'&month=' + element['month']+'"';
-                        stringToWrite = '<li><a href='+ hrefString +'>'+element['eventname']+'</a></li>';
+                        stringToWrite = '<li><a href='+ hrefString +'>'+element['eventname']+ ' (' + monthsList[month-1] + ')'+'</a></li>';
                         $('#groupContainer>ul').append(stringToWrite);
                     });
                 }
@@ -147,7 +147,7 @@ $(document).ready(function(){
                 }else{
                     json.forEach(element => {
                         var hrefString = '"' + targetPage + '?sid='+element['sid']+'&type=' + element['type']+'"';
-                        stringToWrite = '<li><a href='+ hrefString +'>'+element['servicename']+'</a></li>';
+                        stringToWrite = '<li><a href='+ hrefString +'>'+element['servicename']+ ' ' + '(' + element['type'] + ')' +'</a></li>';
                         $('#groupContainer>ul').append(stringToWrite);
                     });
                 }
@@ -174,7 +174,7 @@ $(document).ready(function(){
                             t = 'all';
                         }
                         var hrefString = '"' + targetPage + '?rid='+element['rid']+'&type=' + t +'"';
-                        stringToWrite = '<li><a href='+ hrefString +'>'+element['rolename']+'</a></li>';
+                        stringToWrite = '<li><a href='+ hrefString +'>'+element['rolename']+ ' ('+element['type']+')'+'</a></li>';
                         $('#groupContainer>ul').append(stringToWrite);
                     });
                 }
@@ -205,10 +205,10 @@ $(document).ready(function(){
                         fetch('../crrdn/people/'+element['pid']+'/role').then(response=>{
                             return response.json();
                         }).then(json =>{
-                            return getPersonJob(json[0]['rolename']);
+                            return [getPersonJob(json[0]['rolename']),json[0]['rolename']];
                         }).then((job)=>{
-                            var hrefString = '"' + targetPage + '?pid='+element['pid']+'&job=' + job+'"';
-                            stringToWrite = '<li><a href='+ hrefString +'>'+element['firstname']+' '+element['lastname']+'</a></li>';
+                            var hrefString = '"' + targetPage + '?pid='+element['pid']+'&job=' + job[0] + '"';
+                            stringToWrite = '<li><a href='+ hrefString +'>'+element['firstname']+' '+element['lastname']+' ('+job[1]+')'+'</a></li>';
                             $('#groupContainer>ul').append(stringToWrite);
                         });
                     });
@@ -230,7 +230,7 @@ $(document).ready(function(){
                 }else{
                     json.forEach(element => {
                         var hrefString = '"' + targetPage + '?sid='+element['pid']+'&type=' + element['type']+'"';
-                        stringToWrite = '<li><a href='+ hrefString +'>'+element['servicename']+'</a></li>';
+                        stringToWrite = '<li><a href='+ hrefString +'>'+element['servicename']+ ' ' + '(' + element['type'] + ')' +'</a></li>';
                         $('#groupContainer>ul').append(stringToWrite);
                     });
                 }
