@@ -15,6 +15,11 @@ $(document).ready(function(){
 
     //Read the Path for the breadcrumb and for the page positioning
     let path = JSON.parse(localStorage.getItem('breadcrumb'));
+    if(!path){
+        path = [];
+        path[0] = 'People';
+        path[1] = 'Our ' + capitalize(job);
+    }
 
     //Set the Back button to the right page.
     $("#back").attr('href','./peoplebytype.html?job='+job)

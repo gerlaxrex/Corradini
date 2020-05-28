@@ -14,6 +14,11 @@ $(document).ready(function(){
 
     //Get breadcrumb...
     let path = JSON.parse(localStorage.getItem('breadcrumb'));
+    if(!path){
+        path = [];
+        path[0] = 'Events';
+        path[1] = capitalize(monthsList[month]) + '\'s Events';
+    }
 
     //Set the selection button
     var i = sections.indexOf(sez);

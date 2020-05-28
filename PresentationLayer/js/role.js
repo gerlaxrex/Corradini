@@ -13,6 +13,11 @@ $(document).ready(function(){
 
     //Read the Path for the breadcrumb and for the page positioning
     let path = JSON.parse(localStorage.getItem('breadcrumb'));
+    if(!path){
+        path = [];
+        path[0] = 'Roles';
+        path[1] = capitalize(type) + ' Roles';
+    }
 
     //Set the Back button to the right page.
     $("#back").attr('href','./rolesbytype.html?type='+type)
