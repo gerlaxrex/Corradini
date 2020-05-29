@@ -34,7 +34,7 @@ let sqlDb = sqlDbFactory({
         password: '49a234e1fdc3150128cd7874dd6056e4f0ad2366f21c272825c6fda05dea4692',
         database: 'd65a7i9u7uhv9n'
     },
-    ssl: true
+    ssl: false
 });
 
 
