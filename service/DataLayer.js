@@ -27,14 +27,14 @@ const sqlDbFactory = require("knex");
 let sqlDb = sqlDbFactory({
     debug: false,
     client: 'pg',
-    searchPath: ['d65a7i9u7uhv9n','CorradiniDB'],
+    searchPath: ['d9m9vkc0rqg9ho','CorradiniDB'],
     connection: {
-        host: "ec2-54-246-90-10.eu-west-1.compute.amazonaws.com",
-        user: 'rbjagrfxysmadu',
-        password: '49a234e1fdc3150128cd7874dd6056e4f0ad2366f21c272825c6fda05dea4692',
-        database: 'd65a7i9u7uhv9n'
+        host: "ec2-54-246-89-234.eu-west-1.compute.amazonaws.com",
+        user: 'pmzywjulaikobu',
+        password: 'ff5a4e47ca3e7952add093235ab6412e2a870c98af8a0c80ba69f08067d3e7e8',
+        database: 'd9m9vkc0rqg9ho'
     },
-    ssl: false
+    ssl: true
 });
 
 
