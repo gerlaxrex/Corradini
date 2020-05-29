@@ -28,12 +28,13 @@ let sqlDb = sqlDbFactory({
     debug: false,
     client: 'pg',
     searchPath: ['d9m9vkc0rqg9ho','CorradiniDB'],
-    connection: {
+    /*connection: {
         host: "ec2-54-246-89-234.eu-west-1.compute.amazonaws.com",
         user: 'pmzywjulaikobu',
         password: 'ff5a4e47ca3e7952add093235ab6412e2a870c98af8a0c80ba69f08067d3e7e8',
         database: 'd9m9vkc0rqg9ho'
-    },
+    },*/
+    connection: process.env.DATABASE_URL,
     ssl: true
 });
 
