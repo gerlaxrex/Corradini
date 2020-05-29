@@ -4,10 +4,6 @@
         <!-- BOOTSTRAP AND JQUERY-->
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../../css/mainstyle.css">
@@ -63,26 +59,30 @@
                     <h2>Others</h2>
                     <p><b>Management Center</b>: +39 000 000 0000</p>
                     <p><b>Garden Number</b>: +39 000 000 0001</p>
-                </div>
-                <div class="col-lg-1"></div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6 maintext">
-                    <h2>Contact form</h2>
+                    <div id = 'form'>
+                    <h1>Contact form</h1>
                     <form>
-                        <label>Email: </label><input type="email"/>
-                        <label>Text: </label><textarea rows="4" cols="50" placeholder="...your message here..."></textarea>
-                        <label>Attached:</label><input type="file" value=""/>
+                        <label>Email: </label><input type="email" placeholder="...your email here..."/>
+                        <label>Text: </label><textarea rows="4" placeholder="...your message here..."></textarea>
+                        <label>Attachment:</label><input type="file" value=""/>
                         <input type="submit" value="Send" onclick="alert('Mail has been sent')"/>   
                     </form>
+                  </div>
                 </div>
-                <div class="col-lg-3"></div>
+                <div class="col-lg-1">
+                </div>
             </div>
         </div>
         
         <div class="container-fluid fixed-bottom" id = "FooterContainer">
             @centrocorradini, 2020
         </div>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="../../js/util_functions.js"></script>
+        <script src="../../js/contact.js"></script>
     </body>
     </html>

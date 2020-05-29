@@ -5,6 +5,7 @@ $(document).ready(function(){
     let sid = parameters['sid'];
     let type = parameters['type'];
     let sez = sections[0];
+    let reset = parameters['reset'];
 
     if(parameters['sez']){
         sez = parameters['sez'];
@@ -15,7 +16,7 @@ $(document).ready(function(){
 
     //Read the Path for the breadcrumb and for the page positioning
     let path = JSON.parse(localStorage.getItem('breadcrumb'));
-    if(!path){
+    if(!path || reset){
         path = [];
         path[0] = 'Services';
         path[1] = capitalize(type) + ' Services';
