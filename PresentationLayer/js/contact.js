@@ -20,8 +20,5 @@ $(document).ready(function(){
     $("input[type='email']").focusout(function(){
         if(!ok){
             $(this).css('background-color', 'rgb(255, 255, 255)');
-        }else{
-            $(this).css('background-color','rgb(255, 149, 149)');
-        }
     });
 });
