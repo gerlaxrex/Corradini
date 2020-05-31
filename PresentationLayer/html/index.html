@@ -100,18 +100,29 @@
           <div class="row">
             <div class="col-lg-8  maintext">
               <h1>Welcome to Centro Corradini<img src="../images/noun_Waving Hand_3022030.png" class="icon" alt="welcome icon"></h1>
-              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit,/
-              sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur,/
-              adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum /
-              exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?/
-              [33] At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio./
-              Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus,/
-              ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p></div>
+              <h2>Intro</h2>
+              <p>The psychological wellness of human beings finds its own roots in the capability of the armonious feeling of each's personal exeprience.<br>
+              In the confluence between the human and the nature it is possible to discover or re-discover the possibility of a full life, sense-wide open, and the experience of living in the entire world.</p>
+              <h2>The Garden Cure</h2>
+              <p>So the so called "<b><i>Garden Cure</i></b>" constantly assumes increasing importance in different fields of study; in particular as a therapy for the reabilitation of people affected by psycho-physical diseases.
+            <br>The Garden Cure affects a deeper and more intimate aspect of the human psyche, being able to reactivate not only some bonds with the nature that nowadays have been lost, but also 
+              giving to the person a sense of responsibilty and dynamicity that maybe isn't vivid anymore.</p>
+              <p>Our center is then fully focused on the use of the Garden Cure in order to help people with <b>Autism Spectrum Disorder</b> of various ages not only by psychological sustain coming from the experts associated with
+              the association, but also teaching them how to effectively work on a project as a squad and orienting them to the work life, whereas possible.<br>
+            </p></div>
             
             <div class="col-lg-1"></div>
             <div class="col-lg-3 maintext">
               <h1>Daily News<img  class ="icon" src="../images/noun_news_518193.svg" alt="news icon"></h1>
-              <p>Discover with us the new way of living in the nature and helping our guys developing work skills.</p>
+              <div class="news-box">
+                <h3>New Events in June</h3>
+                <p>We organized new events in the month of June! Check them in the </p>
+              </div>
+
+              <div class="news-box">
+                <h3>Summer Break!</h3>
+                <p>We announce summer break! Come join us for a last goodbye in the Association Mansion.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -120,4 +131,17 @@
         </div>
 
     </body>
+    <script>
+      function ellipsis(description, maxL){
+        return description.substring(0,maxL) + '...';
+      }
+      
+      let news = document.querySelectorAll('.news-box p');
+      news.forEach(element => {
+        let str = element.textContent;
+        console.log(str);
+        element.textContent = ellipsis(str,50);
+      });
+      
+    </script>
 </html>

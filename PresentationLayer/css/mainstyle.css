@@ -344,13 +344,13 @@ a.disabled, a.disabled:hover{
 
 h1,h2,h3{
     font-weight: bolder;
-    font-size: 1.8em;
+    font-size: 1.6em;
     color: rgb(94, 185, 67);
     font-family: 'Josefin Sans', sans-serif;
 }
 
 h1{
-    font-size: 2em;
+    font-size: 2em;   
 }
 
 p{
@@ -489,4 +489,21 @@ form label{
 form button{
     font-family:'Montserrat', sans-serif;
     text-align: center;   
+}
+
+.news-box {
+    border: rgb(124, 87, 45) 1.5px solid;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: rgba(248, 248, 248, 0.507);
+}
+
+.preview{
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    width: 100%;
 }
