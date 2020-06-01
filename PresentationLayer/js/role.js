@@ -44,7 +44,7 @@ $(document).ready(function(){
             <p>\
             '+getAssignments(json[0]['description'])+'\
             </p>\
-            <div class="imagesTop"><img src="../images/orto.jpg"/></div>'; 
+            <div class="imagesInside"><div class="fadeClass"></div><img src="../images/'+json[0]['type']+'.jpg"/></div>'; 
 
             $('#roleContainer').append(elementParts);
             if(path.length == 2){
@@ -61,7 +61,7 @@ $(document).ready(function(){
             <h2>Type:</h2> <span class="typeTag">'+ json[0]['type']+'</span>\
             <h2>Description</h2>\
             <p>'+getSpecificDescription(json[0]['description'])+'</p>\
-            <div class="imagesTop"><img src="../images/orto.jpg"/></div>'; 
+            <div class="imagesInside"><div class="fadeClass"></div><img src="../images/'+json[0]['type']+'.jpg"/></div>'; 
 
             $('#roleContainer').append(elementParts);
             if(path.length == 2){

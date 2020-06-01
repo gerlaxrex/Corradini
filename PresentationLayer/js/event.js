@@ -54,7 +54,7 @@ $(document).ready(function(){
             divToWrite = '<h1>'+event['eventname']+'</h1>\
             <h2> Description </h2>\
             <p>'+event['description']+'</p>\
-            <div class="imagesTop"><img src="../images/orto2.jpg"></div>';
+            <div class="imagesInside"><div class="fadeClass"></div><img src="../images/events.jpg"/></div>';
         }else if(sez == 'schedule and Sponsors'){
             divToWrite = '<h1>'+event['eventname']+'</h1>\
             <h2> Schedule </h2>\
@@ -63,7 +63,7 @@ $(document).ready(function(){
             <p>'+event['schedule']+'</p>\
             <h2> Sponsors </h2>\
             <p>'+ getSponsors(event['description']) +'</p>\
-            <div class="imagesTop"><img src="../images/orto2.jpg"></div>';
+            <div class="imagesInside"><div class="fadeClass"></div><img src="../images/events.jpg"/></div>';
 
         }else{
             console.log("Error occurred: wrong section for the page has been selected.");

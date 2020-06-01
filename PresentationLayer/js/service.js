@@ -45,8 +45,7 @@ $(document).ready(function(){
         let element = json[0];
         if(json.length <= 0){
             stringToWrite = '<h1>Ops... Nothing found!</h1>\
-            <p> It seems like there is no result for the actual search!</p>\
-            <div class="imagesTop"><img src="../images/orto3.jpg"/></div>';
+            <p> It seems like there is no result for the actual search!</p>';
         }else{
             if(path.length == 2){
                 path.push(capitalize(element['servicename']));
@@ -62,14 +61,14 @@ $(document).ready(function(){
                 <div class="typeTag">'+element['type']+'</div>\
                 <h2> Description </h2>\
                 <p>'+ getSpecificDescription(element['description']) +'</p>\
-                <div class="imagesTop"><img src="../images/orto3.jpg"/></div>';
+                <div class="imagesInside"><div class="fadeClass"></div><img src="../images/'+json[0]['type']+'.jpg"/></div>';
             }else if(sez == 'place and Activities'){
                 stringToWrite = '<h1>'+element['servicename']+'</h1>\
                 <h2>Place</h2>\
                 <p>'+ element['place']+'</p>\
                 <h2> Activities </h2>\
                 <p>'+ getActivities(element['description']) +'</p>\
-                <div class="imagesTop"><img src="../images/orto3.jpg"/></div>';
+                <div class="imagesInside"><div class="fadeClass"></div><img src="../images/'+json[0]['type']+'.jpg"/></div>';
             }
         }
         $('#elementContainer').html(stringToWrite);

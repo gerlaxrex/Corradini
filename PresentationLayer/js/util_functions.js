@@ -172,6 +172,7 @@ function writeBreadcrumb(array){
     array.forEach(element => {
         string += element + ' > ';
     });
+    string = string.substring(0,string.length-3);
     $('.breadcumb').text(string);
 }
 
