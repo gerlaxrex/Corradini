@@ -53,7 +53,7 @@ $(document).ready(function(){
         if(sez === 'description'){
             divToWrite = '<h1>'+event['eventname']+'</h1>\
             <h2> Description </h2>\
-            <p>'+event['description']+'</p>\
+            <p>'+getSpecificDescription(event['description'])+'</p>\
             <div class="imagesInside"><div class="fadeClass"></div><img src="../images/events.jpg"/></div>';
         }else if(sez == 'schedule and Sponsors'){
             divToWrite = '<h1>'+event['eventname']+'</h1>\

@@ -66,6 +66,10 @@ function getSpecificDescription(description){
         specificDescription = specificDescription.substring(0,z);
     }
 
+    if((c = specificDescription.indexOf('Sponsors: ')) >= 0){
+        specificDescription = specificDescription.substring(0,c);
+    }
+
     return specificDescription;
 }
 
