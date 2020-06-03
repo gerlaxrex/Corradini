@@ -388,7 +388,6 @@ ul{
 a{
     color: rgb(94, 185, 67);
     font-size: 1.1em;
-    transition: color 1s;
 }
 
 .pagination li>a{
@@ -406,14 +405,11 @@ a{
     float: right;
 }
 
-a{
-    color: rgb(94, 185, 67);
-    text-decoration-line: none;
-}
 
 a:hover{
     color: rgb(115, 38, 126);
-    text-decoration-line: none;  
+    text-decoration-line: none;
+    transition: color 1s;  
 }
 
 a:focus{
