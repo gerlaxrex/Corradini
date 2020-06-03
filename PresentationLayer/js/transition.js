@@ -233,7 +233,7 @@ $(document).ready(function(){
                     $('#groupContainer').append(stringToWrite);    
                 }else{
                     json.forEach(element => {
-                        var hrefString = '"' + targetPage + '?sid='+element['pid']+'&type=' + element['type']+'"';
+                        var hrefString = '"' + targetPage + '?sid='+element['sid']+'&type=' + element['type']+'"';
                         stringToWrite = '<li><a href='+ hrefString +'>'+element['servicename']+ ' ' + '(' + element['type'] + ')' +'</a></li>';
                         $('#groupContainer>ul').append(stringToWrite);
                     });
