@@ -153,6 +153,31 @@ exports.peoplePidInvolvedGET = function(pid,job,limit,offset) {
   
 }
 
+exports.peoplePidPicturesGET = function(pid,job,limit,offset) {
+  let result = sqlDb('imageperson').where('person',pid).join('person','person.pid','=','imageperson.person');
+
+  if(job != undefined){
+     if(job == "collaborators"){
+       result = result.join('role','role.rid','=','person.rid').whereNot('role.rolename','Sponsor')
+                                                               .andWhere('role.rolename','not like','%Assistant%');
+     }else if (job == "assistants"){
+       result = result.join('role','role.rid','=','person.rid').where('role.rolename','like','%Assistant%');
+     }else{
+       result = result.join('role','role.rid','=','person.rid').where('role.rolename',job);
+     }
+  }
+
+  if(limit != undefined){
+    result = result.limit(limit);
+  }
+
+  if(offset != undefined){
+    result = result.offset(offset);
+  }
+
+  return result.select('imageperson.imagename');
+}
+
 
 /**
  * retrieves the role of a specific person

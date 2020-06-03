@@ -42,6 +42,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   app.use('/css',serveStatic('PresentationLayer/css'));
   app.use('/images',serveStatic('PresentationLayer/images'));
   app.use('/js',serveStatic('PresentationLayer/js'));
+  app.use('/backend',serveStatic('PresentationLayer/backend'));
 
 
 

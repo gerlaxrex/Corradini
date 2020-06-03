@@ -42,7 +42,7 @@ $(document).ready(function(){
             var elementParts = '<h1>'+ json[0]['rolename'] +'</h1>\
             <h2>Assignments</h2>\
             <p>\
-            '+getAssignments(json[0]['description'])+'\
+            '+json[0]['assignments']+'\
             </p>\
             <div class="imagesInside"><div class="fadeClass"></div><img src="../images/'+json[0]['type']+'.jpg"/></div>'; 
 

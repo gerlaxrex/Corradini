@@ -16,7 +16,11 @@ $(document).ready(function(){
     
     //Set and write Breadcrumb
     let path = JSON.parse(localStorage.getItem('breadcrumb'));
-    path[3] = sez;
+    if(path){
+        path[3] = capitalize(sez);
+    }else{
+        path = JSON.parse(localStorage.getItem('OldBreadcrumb'));
+    }
     localStorage.setItem('breadcrumb',JSON.stringify(path));
     writeBreadcrumb(path);
 
@@ -125,8 +129,8 @@ $(document).ready(function(){
                     $('#groupContainer').append(stringToWrite);    
                 }else{
                     json.forEach(element => {
-                        var hrefString = '"' + targetPage + '?eid='+element['eid']+'&month=' + element['month']+'"';
-                        stringToWrite = '<li><a href='+ hrefString +'>'+element['eventname']+ ' (' + monthsList[month-1] + ')'+'</a></li>';
+                        var hrefString = '"' + targetPage + '?eid='+element['eid']+'&month=' + formatTimestamp(element['begintime'],'MM')+'"';
+                        stringToWrite = '<li><a href='+ hrefString +'>'+element['eventname']+ ' (' + formatTimestamp(element['begintime'],'M') + ')'+'</a></li>';
                         $('#groupContainer>ul').append(stringToWrite);
                     });
                 }

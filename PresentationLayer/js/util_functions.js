@@ -210,6 +210,10 @@ function formatTimestamp(timestamp,mod){
         return day + ' ' + month + ' ' + year + ' ' + time;
     }else if(mod == 'T'){
         return time;
+    }else if(mod == 'MM'){
+        return formatNumber(date.getMonth()+1);
+    }else if(mod == 'M'){
+        return month;
     }else{
         return date;
     }

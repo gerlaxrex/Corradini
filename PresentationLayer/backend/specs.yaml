@@ -65,7 +65,6 @@ paths:
         default:
           description: "Something went wrong in the request."
       x-swagger-router-controller: "Role"
-      
   /roles/{rid}:
     get:
       tags:
@@ -103,7 +102,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Role"
-
   /roles/{rid}/relatedTo:
     get:
       tags:
@@ -153,7 +151,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Role"
-
   /services:
     get:
       tags:
@@ -257,7 +254,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Service"
-
   /services/{sid}/presentedIn:
     get:
       tags:
@@ -304,7 +300,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Service"
-
   /services/{sid}/involving:
     get:
       tags:
@@ -351,7 +346,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Service"
-
   /events:
     get:
       tags:
@@ -389,7 +383,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Event"
-
   /events/{eid}:
     get:
       tags:
@@ -420,7 +413,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Event"
-
   /events/{eid}/presents:
     get:
       tags:
@@ -466,7 +458,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Event"
-
   /events/{eid}/contact:
     get:
       tags:
@@ -499,7 +490,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Event"
-
   /people:
     get:
       tags:
@@ -537,7 +527,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Person"
-
   /people/{pid}:
     get:
       tags:
@@ -580,7 +569,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Person"
-
   /people/{pid}/role:
     get:
       tags:
@@ -613,7 +601,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Person"
-
   /people/{pid}/contactFor:
     get:
       tags:
@@ -658,7 +645,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Person"
-
   /people/{pid}/involved:
     get:
       tags:
@@ -703,52 +689,6 @@ paths:
         default:
           description: "Something went wrong in the request"
       x-swagger-router-controller: "Person"
-
-  /people/{pid}/pictures:
-    get:
-      tags:
-      - "person"
-      summary: "gets the pictures in which the person is depicted."
-      description: "retrieves the pictures in which the person is depicted."
-      operationId: "peoplePidPicturesGET"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "pid"
-        in: "path"
-        description: "identifier of the person"
-        required: true
-        type: "string"
-      - name: "job"
-        in: "query"
-        description: "role of the person"
-        required: false
-        type: "string"
-      - name: "limit"
-        in: "query"
-        description: "max number of items per page"
-        required: false
-        type: "integer"
-      - name: "offset"
-        in: "query"
-        description: "pagination offset for the given page"
-        required: false
-        type: "integer"
-      responses:
-        "200":
-          description: "pictures in which the person is the depicted"
-          schema:
-            type: "array"
-            items:
-              type: "string"
-        "404":
-          description: "pictures could not be found"
-        default:
-          description: "Something went wrong in the request"
-      x-swagger-router-controller: "Person"
-
-
-
 definitions:
   Role:
     type: "object"
@@ -764,8 +704,6 @@ definitions:
       rolename:
         type: "string"
       description:
-        type: "string"
-      assignments:
         type: "string"
       type:
         type: "string"
@@ -796,8 +734,6 @@ definitions:
       type:
         type: "string"
       place:
-        type: "string"
-      activities:
         type: "string"
     example:
       description: "description"
@@ -866,10 +802,6 @@ definitions:
         type: "integer"
         minimum: 0
         maximum: 99
-      description:
-        type: "string"
-      interests:
-        type: "string"
       role:
         type: "string"
         minLength: 4

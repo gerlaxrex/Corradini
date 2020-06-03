@@ -56,6 +56,20 @@ module.exports.peoplePidInvolvedGET = function peoplePidInvolvedGET (req, res, n
     });
 };
 
+module.exports.peoplePidPicturesGET = function peoplePidPicturesGET (req, res, next) {
+  var pid = req.swagger.params['pid'].value;
+  var job = req.swagger.params['job'].value;
+  var limit = req.swagger.params['limit'].value;
+  var offset = req.swagger.params['offset'].value;
+  Person.peoplePidPicturesGET(pid,job,limit,offset)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.peoplePidRoleGET = function peoplePidRoleGET (req, res, next) {
   var pid = req.swagger.params['pid'].value;
   var job = req.swagger.params['job'].value;

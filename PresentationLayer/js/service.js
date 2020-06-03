@@ -67,7 +67,7 @@ $(document).ready(function(){
                 <h2>Place</h2>\
                 <p>'+ element['place']+'</p>\
                 <h2> Activities </h2>\
-                <p>'+ getActivities(element['description']) +'</p>\
+                <p>'+ element['activities'] +'</p>\
                 <div class="imagesInside"><div class="fadeClass"></div><img src="../images/'+json[0]['type']+'.jpg"/></div>';
             }
         }

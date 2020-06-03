@@ -28,7 +28,7 @@ $(document).ready(function(){
     //Set the link for the other sections
     var i = sections.indexOf(sez);
     for(let k = 0; k != sections.length; ++k){
-        $("#section"+k).attr('href','service.html?pid='+pid+'&job='+job+'&sez='+sections[(i+k+1)%sections.length]);
+        $("#section"+k).attr('href','person.html?pid='+pid+'&job='+job+'&sez='+sections[(i+k+1)%sections.length]);
         $("#section"+k).text(capitalize(sections[(i+k+1)%sections.length]));
     }
 
@@ -39,9 +39,9 @@ $(document).ready(function(){
 
     if(sez == 'generalities and Interests'){
         //Retrieve Data from the DB
-        fetch(apiString).then(response => {
+        fetch(apiString).then((response) => {
             return response.json();
-        }).then(json => {
+        }).then((json) => {
             let stringToWrite;
             let element = json[0];
             if(json.length <= 0){
@@ -66,7 +66,7 @@ $(document).ready(function(){
                                     <b>Description: </b><br>\
                                     '+getSpecificDescription(element['description'])+'</p>\
                                     <h2>Interests</h2>\
-                                    <p>'+getInterests(element['description'])+'</p>\
+                                    <p>'+element['interests']+'</p>\
                                     <span class="clear"></span>';
             }
 
@@ -78,6 +78,25 @@ $(document).ready(function(){
         });
     }else if(sez == 'pictures'){
         //Fetch the imagePerson table from the DB through the relative endpoint!
+        fetch('../crrdn/people/'+pid+'/pictures?job='+job).then((response) =>{
+            return response.json();
+        }).then((json) =>{
+            $('#elementContainer').append('<h1>Pictures</h1>');
+            let stringToWrite = "";
+            if(json.length <= 0){
+                stringToWrite = '<p>No images for this person!</p>';
+                $('#elementContainer').append(stringToWrite);
+            }else{
+                for(var c = 0; c != json.length; ++c){
+                    stringToWrite = '<div class="imagePerson"><a href="../images/'+json[c]['imagename']+'"><img src="../images/'+json[c]['imagename']+'"/></a></div>';
+                    $('#elementContainer').append(stringToWrite);
+                }
+            }
+            localStorage.setItem('breadcrumb',JSON.stringify(path));
+            writeBreadcrumb(path);
+        }).catch(error =>{
+            console.log(error);
+        });
     }else{
         console.log("Sorry, not recognized section.");
     }
