@@ -72,8 +72,8 @@ $(document).ready(function(){
                     $('#groupContainer').append(stringToWrite);    
                 }else{
                     json.forEach(element => {
-                        var hrefString = '"' + targetPage + '?eid='+element['eid']+'&month=' + element['month']+'"';
-                        stringToWrite = '<li><a href='+ hrefString +'>'+element['eventname'] + ' (' + monthsList[month-1] + ')'+'</a></li>';
+                        var hrefString = '"' + targetPage + '?eid='+element['eid']+'&month=' + formatTimestamp(element['begintime'],'MM')+'"';
+                        stringToWrite = '<li><a href='+ hrefString +'>'+element['eventname'] + ' (' + formatTimestamp(element['begintime'],'M') + ')'+'</a></li>';
                         $('#groupContainer>ul').append(stringToWrite);
                     });
                 }
