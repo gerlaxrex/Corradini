@@ -406,6 +406,11 @@ a{
     float: right;
 }
 
+a{
+    color: rgb(94, 185, 67);
+    text-decoration-line: none;
+}
+
 a:hover{
     color: rgb(115, 38, 126);
     text-decoration-line: none;  
