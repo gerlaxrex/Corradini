@@ -409,7 +409,7 @@ a{
 a:hover{
     color: rgb(115, 38, 126);
     text-decoration-line: none;
-    transition: color 1s;  
+    transition: color 1s ease-in-out;  
 }
 
 a:focus{
@@ -451,7 +451,6 @@ a:focus{
 
 .carousel-caption a{
     text-decoration: underline;
-    text-dec
 }
 
 .carousel-caption  a:hover{
@@ -535,5 +534,8 @@ form button{
     width: 45%;
     display: inline-block;
     margin: 10px;
-    float: right;
+}
+
+iframe{
+    height: 300px;
 }
