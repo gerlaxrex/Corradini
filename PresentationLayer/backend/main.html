@@ -78,7 +78,7 @@
 
         <h3>Tools used</h3>
         I used the <b>Node.js</b> framework for the developing of the backend part, with the heavy use of the <b>knex</b> module for the 
-        creation of the connection and queries to the database. Then I used <b>JQuery</b> in the Presentation Layer in order to 
+        creation of the connection and queries to the <b>PostgreSQL</b> database. Then I used <b>JQuery</b> in the Presentation Layer in order to 
         dynamically render the various served pages with the content retrieved from the database.
         For the development of the APIs used in the website i used the <b>Swagger Editor</b> and <b>OpenAPI</b> specification.
         Bootstrap has also been used for the front-end part, but no pre-built template.
@@ -88,44 +88,83 @@
         - How did you make sure your web application adheres to the provided
         OpenAPI specification? Which method did you use to test all APIs
         endpoints against the expected response?
+
+
+        Before starting the development of the website I designed and thought how i wanted
+        the components of my website to interact and use these APIs. Then, after that I build 
+        the website on how i specified these APIs. In some cases I needed to change a little 
+        the APIs in order to completely adhere to the website organization but very small changes
+        have been made.
+        In order to test them, before the development of the final website, I tried out the APIs
+        using them through the SwaggerUI service or simply by calling them and visualizing if the 
+        answer coming from the server was coherent with what i had designed.
+
+
         - Why do you think your web application adheres to common practices to
         partition a REST-based web application (static assets vs.
         application data)
+
+
+        The application data is contained on a database whereas the static assets are served
+        by the web server upon a user's request. Hence, I find that there is a good separation
+        between application data and static assets.
+
+
         - Describe synthetically why and how did you manage session state,
         what are the state change triggering actions (e.g., POST to login
         etc..).
+
+        I did not manage a session state for this type of website, since there 
+        is no need to be identified in order to navigate into it.
+        It has been thought as an informative website in fact, thus i did not
+        developed a session management part.
+
         - Which technology did you use (relational or a no-SQL database) for
         managing the data model?
-        ## Other information
-        ### Task assignment
+
+        I used a relational database because the data model is very simple and linear 
+        and it is not thought for containing lots of data, so the use of a no-SQL database
+        would be quite useless.
+
+
+        <h2>Other information</h2>
+        <h3>Task assignment</h3>
         Describe here how development tasks have been subdivided among members
         of the group, e.g.:
         &gt; - Foo worked on front end (80%) and OpenAPI Spec (20% of the time)
         &gt; - Bar worked on ....
-        ### Analysis of existing API
+        
+        - Gerlando Re worked on the whole website (front-end, back-end, OpenAPI, design);
+
+
+        <h3>Analysis of existing API</h3>
         Describe here the research of (full or part of) existing APIs that are similar
         in objectives and scope to the one implemented, that have possibly guided
         implementation choices (these should not be necessarily OpenAPI
         implementations). Toy APIs (such as the Swagger's Pet Store) or the example
         shown during lectures are not a valid response.
-        Use TWO or more items of the form:
-        &gt; We took (full/partial) inspiration from API &lt;XYZ&gt;(link) for the part of the
-        &gt; API that manages &lt;ABC&gt; because of &lt;REASON&gt;.
-        Or
-        &gt; For the part of the API that manages &lt;ABC&gt; we considered/studied &lt;XYZ&gt;(link)
-        &gt; because of &lt;REASON&gt; but wasn't completely fitting to our purpose because of
-        &gt; &lt;REASON&gt;.
-        ### Learning outcome
+        
+
+        We took partial inspiration from API The Cocktail DB(<a href="https://www.thecocktaildb.com/api.php?ref=apilist.fun">https://www.thecocktaildb.com/api.php?ref=apilist.fun</a>) for the part of the
+        API that manages to retrieve data with Id and eventually filter them because of the way it is organized: in fact with these APIs
+        you can select a cocktail by it's Id and then you can also filter it with the price, the ingredients, the type etc..
+
+        We took partial inspiration from API The Cocktail DB(<a href="https://www.thecocktaildb.com/api.php?ref=apilist.fun">https://www.thecocktaildb.com/api.php?ref=apilist.fun</a>) for the part of the
+        API that manages to retrieve data with Id and eventually filter them because of the way it is organized: in fact with these APIs
+        you can select a cocktail by it's Id and then you can also filter it with the price, the ingredients, the type etc..
+
+
+        <h3>Learning outcome</h3>
         What was the most important thing all the members have learned while
-        6
         developing this part of the project, what questions remained unanswered,
         how you will use what you've learned in your everyday life?
-        Examples:
-        - Foo learned to write SQL queries and Javascript but wanted to know
-        more about caching, he's probably going to create his own startup
-        with what she has learned
-        - Bar learned how to deploy on a cloud platform, he would have liked
-        to know more about promises for asynchronous code..</code></pre>
+        
+        This project has been really helpfull because I never managed to explore
+        all the phases of the development of a website, but only some of them.
+        Since I was alone, I had the possibility to work progressively on every
+        single task and learn all the framework used in a very good way. 
+    
+        </code></pre>
         </section>
         </div>
     </body>

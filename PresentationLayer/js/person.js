@@ -57,7 +57,7 @@ $(document).ready(function(){
                     path[3] = capitalize(sez);
                 }
             
-                stringToWrite = '<div class="portrait-large"><img src="../images/mock.png"></div>\
+                stringToWrite = '<div class="portrait-large"><img src="../images/'+element['firstname']+element['lastname']+'.jpg"></div>\
                                     <h1>'+element['firstname'] +' '+element['lastname']+'</h1>\
                                     <h2>Generalities</h2>\
                                     <p><b>Age: </b>'+element['age']+'<br>\

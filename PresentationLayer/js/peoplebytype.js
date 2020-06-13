@@ -58,7 +58,7 @@ $(document).ready(function(){
             var stringToWrite = json[index]['firstname'] + ' ' + json[index]['lastname'];
       
             var divToWrite = '<div class="person">\
-                                <div class="portrait"><img src="../images/mock.png">\
+                                <div class="portrait"><img src="../images/'+ json[index]['firstname'] + json[index]['lastname'] +'.jpg">\
                                 <div class="person-name"><a href="person.html?pid='+json[index]['pid']+'&job='+job+'">'+stringToWrite+'</a></div>\
                                 </div>\
                             </div>';
