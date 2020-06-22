@@ -274,6 +274,11 @@ body{
     display: block;
 }
 
+.clear-right{
+    clear: right;
+    display: block;
+}
+
 a.disabled, a.disabled:hover{
     color: grey;
     text-decoration-line: line-through;
@@ -328,6 +333,13 @@ a.disabled, a.disabled:hover{
     min-height: 56px;
     margin: 5px;
     display: block;
+}
+
+.info{
+    width: 50%;
+    float: right;
+    display: block;
+
 }
 
 .portrait img{
