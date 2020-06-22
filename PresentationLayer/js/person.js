@@ -58,7 +58,7 @@ $(document).ready(function(){
                 }
             
                 stringToWrite = '<div class="portrait-large"><img src="../images/'+element['firstname']+element['lastname']+'.jpg"></div>\
-                                    <div class="info"><h1>'+element['firstname'] +' '+element['lastname']+'</h1>\
+                                    <h1>'+element['firstname'] +' '+element['lastname']+'</h1>\
                                     <h2>Generalities</h2>\
                                     <p><b>Age: </b>'+element['age']+'<br>\
                                     <b>e-mail: </b>'+element['email']+'<br>\
@@ -67,7 +67,7 @@ $(document).ready(function(){
                                     '+getSpecificDescription(element['description'])+'</p>\
                                     <h2>Interests</h2>\
                                     <p>'+element['interests']+'</p>\
-                                    <span class="clear"></span></div><span class="clear-right"></span>';
+                                    <span class="clear"></span>';
             }
 
             $('#elementContainer').html(stringToWrite);
