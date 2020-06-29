@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="../../css/mainstyle.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" value="Gerlando Re"/>
-        <title>Centro Corradini - Event</title>
+        <title>Centro Corradini - Contacts</title>
     </head>
     <body>
       <nav class="navbar navbar-default">
@@ -23,14 +23,14 @@
             </button>
           </div>
           <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li><a href="../association/association.html" aria-label="association">Association</a></li>
-              <li><a href="../services/allservices.html" aria-label="services">Services</a></li>
-              <li><a href="../people/allpeople.html" aria-label="people">People</a></li>
-              <li><a href="../events/allevents.html" aria-label="events">Events</a></li>
-              <li><a href="../roles/roles.html" aria-label="roles">Roles</a></li>
-              <li><a href="../contacts/contacts.html" aria-label="contacts">Contacts</a></li>
-              <li><a href="../news/news.html" aria-label="news">News</a></li>
+            <ul class="nav navbar-nav" aria-labelledby="navbar">
+              <li><a href="../association/association.html">Association</a></li>
+              <li><a href="../services/allservices.html">Services</a></li>
+              <li><a href="../people/allpeople.html">People</a></li>
+              <li><a href="../events/allevents.html">Events</a></li>
+              <li><a href="../roles/roles.html">Roles</a></li>
+              <li><a href="../contacts/contacts.html">Contacts</a></li>
+              <li><a href="../news/news.html">News</a></li>
             </ul>
           </div>
         </div>
@@ -51,7 +51,7 @@
                 <div class="col-lg-10 maintext">
                     <h1>Contacts</h1>
                     <h2>Social media</h2>
-                    <ul>
+                    <ul aria-label="social media">
                         <li><a>Facebook</a></li>
                         <li><a>Instagram</a></li>
                         <li><a>Twitter</a></li>
@@ -61,11 +61,11 @@
                     <p><b>Garden Number</b>: +39 000 000 0001</p>
                     <div id = 'form'>
                     <h1>Contact form</h1>
-                    <form>
-                        <label>Email: </label><input type="email" placeholder="...your email here..."/>
-                        <label>Text: </label><textarea rows="4" placeholder="...your message here..."></textarea>
-                        <label>Attachment:</label><input type="file" value=""/>
-                        <input type="submit" value="Send" onclick="alert('Mail has been sent')"/>   
+                    <form role="contact-inputs">
+                        <label id="address">Email: </label><input type="email" placeholder="...your email here..." aria-labelledby="form address"/>
+                        <label id="text">Text: </label><textarea rows="4" placeholder="...your message here..." aria-labelledby="form text"></textarea>
+                        <label id="attachment">Attachment:</label><input type="file" value="" aria-labelledby="form attachment"/>
+                        <input type="submit" value="Send" onclick="alert('Mail has been sent')" aria-label="Submit"/>   
                     </form>
                   </div>
                 </div>

@@ -47,7 +47,7 @@ $(document).ready(function(){
             if(json.length <= 0){
                 stringToWrite = '<h1>Ops... Nothing found!</h1>\
                 <p> It seems like there is no result for the actual search!</p>\
-                <div class="imagesTop"><img src="../images/orto3.jpg"/></div>';
+                <div class="imagesTop"><img src="../images/orto3.jpg"/ alt="garden"></div>';
             }else{
                 if(path.length == 2){
                     path.push(capitalize(element['firstname']+' '+element['lastname']));
@@ -57,7 +57,7 @@ $(document).ready(function(){
                     path[3] = capitalize(sez);
                 }
             
-                stringToWrite = '<div class="portrait-large"><img src="../images/'+element['firstname']+element['lastname']+'.jpg"></div>\
+                stringToWrite = '<div class="portrait-large"><img src="../images/'+element['firstname']+element['lastname']+'.jpg" alt="profile pic"></div>\
                                     <h1>'+element['firstname'] +' '+element['lastname']+'</h1>\
                                     <h2>Generalities</h2>\
                                     <p><b>Age: </b>'+element['age']+'<br>\

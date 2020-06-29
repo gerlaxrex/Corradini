@@ -32,7 +32,7 @@ $(document).ready(function(){
             var stringToWrite = typesList[(t+offset*maxLimit)];
       
             var divToWrite = '<div class="groupElement">\
-            <div class="groupImage"><img src="../images/'+stringToWrite+'.jpg"></div>\
+            <div class="groupImage"><img src="../images/'+stringToWrite+'.jpg" alt="'+stringToWrite+'"></div>\
             <h3><a href="servicebytype.html?type='+ stringToWrite +'">'+stringToWrite+'</a></h3>\
             <p>'+ stringToWrite +' services.</p>';
             

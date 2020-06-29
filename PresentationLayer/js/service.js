@@ -61,14 +61,14 @@ $(document).ready(function(){
                 <div class="typeTag">'+element['type']+'</div>\
                 <h2> Description </h2>\
                 <p>'+ getSpecificDescription(element['description']) +'</p>\
-                <div class="imagesInside"><div class="fadeClass"></div><img src="../images/'+json[0]['type']+'.jpg"/></div>';
+                <div class="imagesInside"><div class="fadeClass"></div><img src="../images/'+json[0]['type']+'.jpg" alt="'+json[0]['type']+'"/></div>';
             }else if(sez == 'place and Activities'){
                 stringToWrite = '<h1>'+element['servicename']+'</h1>\
                 <h2>Place</h2>\
                 <p>'+ element['place']+'</p>\
                 <h2> Activities </h2>\
                 <p>'+ element['activities'] +'</p>\
-                <div class="imagesInside"><div class="fadeClass"></div><img src="../images/'+json[0]['type']+'.jpg"/></div>';
+                <div class="imagesInside"><div class="fadeClass"></div><img src="../images/'+json[0]['type']+'.jpg" alt="'+json[0]['type']+'"/></div>';
             }
         }
         $('#elementContainer').html(stringToWrite);

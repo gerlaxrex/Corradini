@@ -29,7 +29,7 @@ $(document).ready(()=>{
       }
 
       var divToWrite = '<div class="groupElement">\
-      <div class="groupImage"><img src="../images/farm.jpg"></div>\
+      <div class="groupImage"><img src="../images/farm.jpg" alt="farm"></div>\
       <h3><a href="eventsbymonth.html?month='+ formatNumber((actualMonth+month+offset*maxLimit)%12 +1) +'">'+stringToWrite+'</a></h3>\
       <p>'+monthsList[(actualMonth+month+offset*maxLimit)%12]+'\'s events.</p>';
       

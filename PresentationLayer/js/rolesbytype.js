@@ -56,7 +56,7 @@ $(document).ready(function(){
   
         var refToRole = 'role.html?rid='+element['rid']+'&type='+type+'&sez=description';  
         var divToWrite = '<div class="groupElement"> \
-              <div class="groupImage"><img src="../images/farm.jpg"></div> \
+              <div class="groupImage"><img src="../images/farm.jpg" alt="farm"></div> \
               <h3><a href="'+ refToRole +'">'+element['rolename']+'</a></h3> \
               <p>'+ getGeneralDescription(element['description']) +'</p> \
               <p>Free positions: <span class="counter">'+element['freeroles']+'</span></p> \

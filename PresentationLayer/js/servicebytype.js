@@ -72,7 +72,7 @@ $(document).ready(function(){
             var stringToWrite = json[index]['servicename'];
       
             var divToWrite = '<div class="groupElement">\
-            <div class="groupImage"><img src="../images/'+json[index]['type']+'.jpg"></div>\
+            <div class="groupImage"><img src="../images/'+json[index]['type']+'.jpg" alt="'+json[index]['type']+'"/></div>\
             <h3><a href="service.html?sid='+ json[index]['sid'] +'&type='+ json[index]['type'] +'">'+stringToWrite+'</a></h3>\
             <p>'+ getGeneralDescription(json[index]['description']) +'</p>';
             
