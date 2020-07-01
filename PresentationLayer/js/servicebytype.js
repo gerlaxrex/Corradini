@@ -80,7 +80,7 @@ $(document).ready(function(){
         }
 
         //Set the paging
-        $('#elementContainer').append('<ul class="pagination pagination-sm"></ul>');
+        $('#elementContainer').append('<ul class="pagination pagination-sm" aria-label="pagination"></ul>');
         for(var i = 0; i != json.length; ++i){
             if(i%maxLimit == 0){
             let hrefString = '"./servicesbytype.html?offset='+Math.floor(i/maxLimit)+'"';

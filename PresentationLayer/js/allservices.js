@@ -40,7 +40,7 @@ $(document).ready(function(){
         }
         
         //Set the paging
-        $('#groupContainer').append('<ul class="pagination pagination-sm"></ul>');
+        $('#groupContainer').append('<ul class="pagination pagination-sm" aria-label="pagination"></ul>');
         for(var i = 0; i != typesList.length; ++i){
             if(i%maxLimit == 0){
                 let hrefString = '"./allservices.html?offset='+Math.floor(i/maxLimit)+'"';

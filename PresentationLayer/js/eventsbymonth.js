@@ -76,7 +76,7 @@ $(document).ready(()=>{
 
 
         //Do the pagination
-        $('#elementContainer').append('<ul class="pagination pagination-sm"></ul>');
+        $('#elementContainer').append('<ul class="pagination pagination-sm" aria-label="pagination"></ul>');
         let numberOfEvents = json.length;
         for(var i = 0; i != numberOfEvents; ++i){
             if(i%maxLimit == 0){

@@ -67,7 +67,7 @@ $(document).ready(function(){
 
 
       //Do the pagination
-      $('#elementContainer').append('<ul class="pagination pagination-sm"></ul>');
+      $('#elementContainer').append('<ul class="pagination pagination-sm" aria-label="pagination"></ul>');
       let numberOfRoles = json.length;
       for(var i = 0; i != numberOfRoles; ++i){
         if(i%maxLimit == 0){

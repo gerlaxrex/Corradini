@@ -46,10 +46,10 @@
 
         
             <div class="row">
-              <div class="col-lg-3 maintext menu">
-                <h3 aria-label="menu">Menu</h3>
+              <div class="col-lg-3 maintext menu" aria-label="menu" aria-owns="sections">
+                <h3>Menu</h3>
                   <p>
-                      <ul>
+                      <ul id="sections">
                           <li><a href="#" id="previous">Previous Month</a></li>
                           <li><a href="#" id="next">Next Month</a></li>
                           <li><a href="allevents.html" id="back">Up to Events</a></li>
@@ -57,7 +57,7 @@
                   </p>
               </div>
               <div class="col-lg-1"></div>
-              <div class="col-lg-8 maintext" id="elementContainer">
+              <div class="col-lg-8 maintext" id="elementContainer" aria-label="events list">
                   <h1>Events in June</h1>
                   <!-- <div class="groupElement">
                       <div class="groupImage"><img src="../images/farm.jpg"></div>

@@ -20,7 +20,7 @@ $(document).ready(function(){
     if(path.length == 1){
         path.push('Our '+ capitalize(job));
     }else if(path.length > 1){
-        path = ['Events'];
+        path = ['People'];
         path[1] = 'Our '+ capitalize(job);
     }
     localStorage.setItem('breadcrumb',JSON.stringify(path));
@@ -69,7 +69,7 @@ $(document).ready(function(){
         $('#elementContainer').append('<span class="clear"></span>');
         
         //Do the pagination
-        $('#elementContainer').append('<ul class="pagination pagination-sm"></ul>');
+        $('#elementContainer').append('<ul class="pagination pagination-sm" aria-label="pagination"></ul>');
         let numberOfPeople = json.length;
         for(var i = 0; i != numberOfPeople; ++i){
             if(i%maxLimit == 0){

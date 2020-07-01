@@ -47,10 +47,10 @@
 
         
             <div class="row">
-                <div class="col-lg-3 maintext menu">
-                    <h3 aria-label="menu">Menu</h3>
+                <div class="col-lg-3 maintext menu" aria-label="menu" aria-owns="sections">
+                    <h3>Menu</h3>
                     <p>
-                        <ul>
+                        <ul id="sections">
                             <li><a id="previous">Previous type</a></li>
                             <li><a id="next">Next type</a></li>
                             <li><a href="allpeople.html">Up to People</a></li>
@@ -58,7 +58,7 @@
                     </p>
                 </div>
                 <div class="col-lg-1"></div>
-                <div class="col-lg-8 maintext" id="elementContainer">
+                <div class="col-lg-8 maintext" id="elementContainer" aria-label="list of people">
                     <h1></h1>
                     <!-- <div class="person">
                         <div class="portrait"><img src="../images/mock.png"></div>

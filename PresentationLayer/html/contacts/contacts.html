@@ -48,7 +48,7 @@
         
             <div class="row">
                 <div class="col-lg-1"></div>
-                <div class="col-lg-10 maintext">
+                <div class="col-lg-10 maintext" aria-label="contacts">
                     <h1>Contacts</h1>
                     <h2>Social media</h2>
                     <ul aria-label="social media">
@@ -63,6 +63,9 @@
                     <h1>Contact form</h1>
                     <form role="contact-inputs">
                         <label id="address">Email: </label><input type="email" placeholder="...your email here..." aria-labelledby="form address"/>
+                        <span id="message" hidden="true" style="background-color: rgb(255, 145, 145); border-radius: 10px; padding: 5px;">
+                          <b>Please, insert a good format for the email!</b>
+                        </span>
                         <label id="text">Text: </label><textarea rows="4" placeholder="...your message here..." aria-labelledby="form text"></textarea>
                         <label id="attachment">Attachment:</label><input type="file" value="" aria-labelledby="form attachment"/>
                         <input type="submit" value="Send" onclick="alert('Mail has been sent')" aria-label="Submit"/>   
