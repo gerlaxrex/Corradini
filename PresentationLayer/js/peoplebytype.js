@@ -17,6 +17,12 @@ $(document).ready(function(){
 
     //Write Breadcrumb
     let path = JSON.parse(localStorage.getItem('breadcrumb'));
+
+    if(!path){
+        path = ['People'];
+    }
+
+
     if(path.length == 1){
         path.push('Our '+ capitalize(job));
     }else if(path.length > 1){

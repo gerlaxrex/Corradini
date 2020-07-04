@@ -30,6 +30,11 @@ $(document).ready(function(){
 
     //Modify and Write the Breadcrumb
     let path = JSON.parse(localStorage.getItem('breadcrumb'));
+
+    if(!path){
+        path = ['Services'];
+    }
+
     if(path.length == 1){
         path.push(type+' Services');
     }else if(path.length > 1){

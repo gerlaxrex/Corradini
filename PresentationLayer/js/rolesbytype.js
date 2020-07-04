@@ -25,6 +25,11 @@ $(document).ready(function(){
     $('#elementContainer h1').text(capitalize(type) + ' Roles');
     
     var path = JSON.parse(localStorage.getItem('breadcrumb'));
+
+    if(!path){
+      path = ['Roles'];
+    }
+
     if(path.length == 1){
       path.push(capitalize(type) + ' Roles');
     }else if(path.length > 1){

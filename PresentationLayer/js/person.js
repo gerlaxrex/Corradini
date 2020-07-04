@@ -15,7 +15,7 @@ $(document).ready(function(){
 
     //Read the Path for the breadcrumb and for the page positioning
     let path = JSON.parse(localStorage.getItem('breadcrumb'));
-    if(!path){
+    if(!path || path[0] != "People"){
         path = [];
         path[0] = 'People';
         path[1] = 'Our ' + capitalize(job);

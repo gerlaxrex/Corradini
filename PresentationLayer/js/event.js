@@ -14,7 +14,7 @@ $(document).ready(function(){
 
     //Get breadcrumb...
     let path = JSON.parse(localStorage.getItem('breadcrumb'));
-    if(!path){
+    if(!path || path[0] != "Events"){
         path = [];
         path[0] = 'Events';
         path[1] = capitalize(monthsList[month]) + '\'s Events';
