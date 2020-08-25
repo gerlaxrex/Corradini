@@ -21,4 +21,9 @@ RESTful API has been implemented for the website using Swagger and Swagger Edito
 
 ## Back-end 🗄️
 
-The back-end part, that is the bussiness logic and the Database did not require much effort since the website is straightforward: I implemented some function in order to better format the data and finally implemented the services and the 
+The back-end part, that is the bussiness logic and the Database did not require much effort since the website is straightforward: I implemented some function in order to better format the data and finally implemented the services and the necessary code in order to retrive data from the DB.
+I used **knex** for the connection and query to the database, and **PostgreSQL** as RDBMS. 
+
+## Deployment 🚀
+
+I used **Heroku** since it is free and easy to use. Moreover it allows the automatic and free deploy of you DB onto AWS servers.
