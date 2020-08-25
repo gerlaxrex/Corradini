@@ -21,4 +21,4 @@ RESTful API has been implemented for the website using Swagger and Swagger Edito
 
 ## Back-end 🗄️
 
-The back-end part, that is the bussiness logic and the Database did not require much effort since the website is not 
+The back-end part, that is the bussiness logic and the Database did not require much effort since the website is straightforward: I implemented some function in order to better format the data and finally implemented the services and the 
