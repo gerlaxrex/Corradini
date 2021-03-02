@@ -1,3 +1,10 @@
+[![JS](https://img.shields.io/badge/%7F-Javascript-yellow.svg?logo=Javascript)](https://shields.io/)
+[![HTML5](https://img.shields.io/badge/%7F-HTML5-red.svg?logo=HTML5)](https://shields.io/)
+[![CSS3](https://img.shields.io/badge/%7F-CSS3-blue.svg?logo=CSS3)](https://shields.io/)
+[![JQuery](https://img.shields.io/badge/%7F-JQuery-darkblue.svg?logo=JQuery)](https://shields.io/)
+[![Bootstrap](https://img.shields.io/badge/%7F-Bootstrap-violet.svg?logo=Bootstrap)](https://shields.io/)</br>
+[![Node.js](https://img.shields.io/badge/%7F-Node.js-green.svg?logo=Node.js)](https://shields.io/)</br>
+[![PostgreSQL](https://img.shields.io/badge/%7F-PostgreSQL-lightblue.svg?logo=PostgreSQL)](https://shields.io/)
 # Corradini Website 🍃
 ## (Hypermedia Course A.A. 2019/2020 PoliMi)
 
