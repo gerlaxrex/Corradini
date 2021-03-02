@@ -5,6 +5,10 @@
 [![Bootstrap](https://img.shields.io/badge/%7F-Bootstrap-violet.svg?logo=Bootstrap)](https://shields.io/)
 [![Node.js](https://img.shields.io/badge/%7F-Node.js-green.svg?logo=Node.js)](https://shields.io/)
 [![PostgreSQL](https://img.shields.io/badge/%7F-PostgreSQL-lightblue.svg?logo=PostgreSQL)](https://shields.io/)
+
+<img src="https://user-images.githubusercontent.com/36633875/109721364-896a4800-7bab-11eb-8404-da0f468ba06f.jpg" width="100%"/>
+
+
 # Corradini Website 🍃
 ## (Hypermedia Course A.A. 2019/2020 PoliMi)
 
