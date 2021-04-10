@@ -4,7 +4,7 @@ let { setupDataLayer } = require("./service/DataLayer");
 
 var fs = require('fs'),
     path = require('path'),
-    https = require('https'),
+    http = require('http'),
     serveStatic = require('serve-static');
 
 var app = require('connect')();
@@ -48,7 +48,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
   // Start the server
   setupDataLayer().then(()=>{
-    https.createServer(app).listen(process.env.PORT || serverPort, function () {
+    http.createServer(app).listen(process.env.PORT || serverPort, function () {
       console.log('Your server is listening on port %d (https://localhost:%d)', serverPort, serverPort);
       console.log('Swagger-ui is available on https://localhost:%d/docs', serverPort);
     });
