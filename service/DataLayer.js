@@ -8,10 +8,10 @@ let local = false;
 //For Heroku Connection
 const sqlDbFactory = require("knex");
 let sqlDb = sqlDbFactory({
-    debug: true,
+    debug: false,
     client: 'pg',
     searchPath: ['d9m9vkc0rqg9ho','CorradiniDB'],
-    connection: process.env.DATABASE_URL,
+    connection: process.env.DATABASE_URL+"?ssl=true",
     ssl: true
 });
 
