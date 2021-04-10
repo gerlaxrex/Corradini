@@ -7,7 +7,7 @@ let sqlDb;
 //Setting the connection to the db and check if table exists
 exports.EventDbSetup = function(connection){
   sqlDb = connection;
-  console.log("checking if table exists.");
+  console.log("checking if table Event exists.");
   return sqlDb.schema.hasTable('event').then((exists) => {
     if(!exists){
       console.log("Table does not exit!");

@@ -5,7 +5,7 @@ let sqlDb;
 //SETTING UP THE CONNECTION FOR THE COMMUNICATION OF THE DATABASE
 exports.RoleDbSetup = function(connection){
   sqlDb = connection;
-  console.log("checking if table exists.");
+  console.log("checking if table Role exists.");
   return sqlDb.schema.hasTable('role').then((exists) => {
     if(!exists){
       console.log("Table does not exit!");
