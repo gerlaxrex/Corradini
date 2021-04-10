@@ -11,7 +11,7 @@ let sqlDb = sqlDbFactory({
     debug: false,
     client: 'pg',
     searchPath: ['d9m9vkc0rqg9ho','CorradiniDB'],
-    connection: process.env.DATABASE_URL+"?ssl=true",
+    connection: process.env.DATABASE_URL,
     ssl: true
 });
 
